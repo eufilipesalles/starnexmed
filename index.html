@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<title>Starnex Med | Pacientes particulares todo mês para clínicas médicas</title>
+<meta name="description" content="Tráfego pago, LP de alta conversão, Google, CRM e playbook comercial em um único sistema de aquisição para clínicas médicas. Diagnóstico gratuito de 30 minutos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1014003797608090');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1014003797608090&ev=PageView&noscript=1" alt=""></noscript>
+<!-- End Meta Pixel -->
+
+<style>
+  :root {
+    --ink: #120b1f;
+    --mute: #5b5370;
+    --dim: #6f6784;
+    --purple: #6d28d9;
+    --purple-deep: #5b21b6;
+    --purple-soft: #ede4ff;
+    --tint: #f6f2ff;
+    --line: #e4daf8;
+    --white: #ffffff;
+    --black: #0b0714;
+    --ok: #15803d;
+    --err: #b91c1c;
+    --display: 'Sora', system-ui, sans-serif;
+    --body: 'Manrope', system-ui, sans-serif;
+    --wrap: 1120px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--white); color: var(--ink);
+    font-family: var(--body); font-size: 17px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, p, ul, ol { margin: 0; padding: 0; }
+  ul, ol { list-style: none; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance; }
+  a { color: inherit; }
+  button, input, select { font-family: inherit; }
+  svg { display: block; }
+  .ic { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  :focus-visible { outline: 2px solid var(--purple); outline-offset: 3px; }
+
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+  .section { padding: 92px 0; }
+  .tint { background: var(--tint); }
+  .anchor { scroll-margin-top: 20px; }
+  .hl { color: var(--purple); }
+
+  .pill {
+    display: inline-block; padding: 8px 18px; border-radius: 999px;
+    background: var(--white); border: 1px solid var(--line);
+    color: var(--purple-deep); font-size: 12px; font-weight: 800;
+    letter-spacing: .12em; text-transform: uppercase;
+  }
+  .tint .pill { background: var(--white); }
+  .shead { text-align: center; max-width: 840px; margin: 0 auto; }
+  .shead h2 { margin-top: 22px; font-size: clamp(28px, 4vw, 44px); }
+  .shead p { margin: 18px auto 0; color: var(--mute); max-width: 58ch; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 18px 44px; border: 0; border-radius: 14px;
+    background: var(--purple); color: var(--white);
+    font-size: 17px; font-weight: 700; text-decoration: none; cursor: pointer;
+    box-shadow: 0 14px 30px -14px rgba(109,40,217,.7);
+    transition: background-color .2s ease;
+  }
+  .btn:hover { background: var(--purple-deep); }
+  .btn:disabled { opacity: .65; cursor: wait; }
+
+  /* ---------- Hero ---------- */
+  .hero { position: relative; overflow: hidden; text-align: center; padding: 34px 0 72px; }
+  .hero::before {
+    content: ""; position: absolute; left: 50%; top: -260px; width: 1300px; height: 820px;
+    transform: translateX(-50%);
+    background: radial-gradient(closest-side, rgba(109,40,217,.15), rgba(109,40,217,0));
+    pointer-events: none;
+  }
+  .hero .wrap { position: relative; }
+  .brand { display: inline-flex; align-items: center; gap: 8px; font-family: var(--display); font-weight: 700; font-size: 25px; letter-spacing: -0.02em; }
+  .brand-tag { background: var(--purple); color: var(--white); border-radius: 8px; padding: 1px 9px 2px; font-size: 18px; }
+  .hero-top { margin: 52px auto 0; max-width: 56ch; color: var(--mute); font-size: 16.5px; font-weight: 500; text-wrap: balance; }
+  .hero-top b { color: var(--purple); font-weight: 800; }
+  .hero h1 { margin: 20px auto 0; max-width: 980px; font-size: clamp(30px, 4.3vw, 52px); line-height: 1.17; letter-spacing: -0.028em; }
+  .hero h1 .u { position: relative; display: inline-block; white-space: nowrap; }
+  .hero h1 .u::after {
+    content: ""; position: absolute; left: -2%; right: -2%; bottom: -.1em; height: .2em;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 9C48 3 118 3 197 7' fill='none' stroke='%236d28d9' stroke-width='4.5' stroke-linecap='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  }
+  .hero-sub { margin: 30px auto 0; max-width: 56ch; text-wrap: balance; color: var(--mute); font-size: clamp(17px, 2vw, 19.5px); }
+  .hero-sub strong { color: var(--purple); font-weight: 800; }
+  .hero .btn { margin-top: 38px; }
+
+  /* ---------- Onde a clínica perde pacientes ---------- */
+  .loss-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 56px; }
+  .loss-card { position: relative; background: var(--white); border: 1px solid var(--line); border-radius: 24px; padding: 34px 26px 30px; }
+  .loss-card::before { content: ""; position: absolute; top: -1px; left: 26px; width: 58px; height: 4px; border-radius: 0 0 4px 4px; background: var(--purple); }
+  .loss-n { font-family: var(--display); font-weight: 700; font-size: 30px; color: var(--purple); letter-spacing: -0.02em; }
+  .loss-card h3 { margin-top: 18px; font-size: 18.5px; letter-spacing: -0.01em; line-height: 1.25; }
+  .loss-card p { margin-top: 10px; color: var(--mute); font-size: 15px; }
+
+  /* ---------- Mitos ---------- */
+  .myth-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-top: 56px; }
+  .myth { position: relative; background: var(--tint); border: 1px solid var(--line); border-radius: 24px; padding: 32px 30px 32px; text-align: center; }
+  .myth::before { content: ""; position: absolute; top: -1px; left: 50%; width: 58px; height: 4px; transform: translateX(-50%); border-radius: 0 0 4px 4px; background: var(--purple); }
+  .myth .pill { padding: 6px 16px; font-size: 11.5px; }
+  .myth q { display: block; margin-top: 20px; font-family: var(--display); font-weight: 600; font-size: 20px; line-height: 1.3; letter-spacing: -0.01em; quotes: "“" "”" "“" "”"; }
+  .myth p { margin: 14px auto 0; max-width: 46ch; color: var(--mute); font-size: 15.5px; }
+  .myth p b { color: var(--purple); font-weight: 800; }
+
+  /* ---------- A virada ---------- */
+  .turn { text-align: center; }
+  .turn h2 { margin: 22px auto 0; max-width: 24ch; font-size: clamp(30px, 4.2vw, 48px); }
+  .turn p { margin: 26px auto 0; max-width: 58ch; color: var(--mute); font-size: 18px; }
+  .turn p strong { color: var(--purple); font-weight: 700; }
+  .turn p + p { margin-top: 18px; }
+  .turn-arrow { margin: 40px auto 0; width: 38px; height: 38px; color: var(--purple); }
+  .turn-arrow .ic { width: 38px; height: 38px; stroke-width: 2.2; }
+
+  /* ---------- Entregas: "engrenagens" (modelo JDP Med) ---------- */
+  .gears { background: var(--black); color: var(--white); }
+  .gears .pill { background: rgba(167,139,250,.1); border-color: rgba(167,139,250,.32); color: #c4b5fd; }
+  .gears .shead h2 { color: var(--white); }
+  .gears .hl { color: #a78bfa; }
+  .gears .shead p { color: #b9aed1; max-width: 60ch; }
+  .gears .shead p b { color: var(--white); font-weight: 700; }
+  .gear-list { max-width: 940px; margin: 52px auto 0; display: grid; gap: 14px; }
+  .gear { display: grid; grid-template-columns: 44px 1fr; gap: 18px; padding: 24px 28px; background: #130d22; border: 1px solid #251b3b; border-radius: 22px; }
+  .gear-n { width: 40px; height: 40px; border-radius: 50%; border: 1px solid #3a2d57; background: #1b1331; color: #c4b5fd; display: flex; align-items: center; justify-content: center; font-family: var(--display); font-weight: 700; font-size: 14px; }
+  .gear h3 { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-size: 19px; letter-spacing: -0.01em; line-height: 1.25; }
+  .gear .tag { font-family: var(--body); font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #c4b5fd; border: 1px solid #3a2d57; border-radius: 999px; padding: 3px 10px; }
+  .gear p { margin-top: 8px; color: #b9aed1; font-size: 15px; line-height: 1.65; }
+  .gear p b { color: var(--white); font-weight: 700; }
+  .gear-final { display: flex; align-items: center; justify-content: space-between; gap: 28px; padding: 28px 30px; border: 1.5px solid #8b5cf6; border-radius: 22px; background: linear-gradient(135deg, rgba(139,92,246,.2), rgba(139,92,246,.04)); }
+  .gear-final h3 { font-size: 21px; line-height: 1.25; letter-spacing: -0.015em; }
+  .gear-final p { margin-top: 6px; color: #d8ccf5; font-size: 15px; }
+  .gear-final .btn { flex: 0 0 auto; background: var(--white); color: var(--purple-deep); box-shadow: none; }
+  .gear-final .btn:hover { background: var(--purple-soft); }
+
+  /* ---------- Formulário em etapas (modal, modelo JDP Med) ---------- */
+  [hidden] { display: none !important; }
+  html.modal-open { overflow: hidden; }
+  .modal { position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; padding: 16px; background: rgba(11,7,20,.6); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+  .modal.open { display: flex; }
+  .dialog { width: 100%; max-width: 680px; max-height: calc(100dvh - 32px); display: flex; flex-direction: column; background: var(--white); border-radius: 28px; overflow: hidden; box-shadow: 0 40px 100px -30px rgba(11,7,20,.65); }
+  #lead-form { display: flex; flex-direction: column; flex: 1 1 auto; min-height: 0; }
+  .dlg-bar { flex: 0 0 auto; height: 4px; background: #efe9fb; }
+  .dlg-bar i { display: block; height: 100%; width: 25%; background: linear-gradient(90deg, #8b5cf6, var(--purple-deep)); transition: width .3s ease; }
+  .dlg-head { position: relative; flex: 0 0 auto; padding: 22px 32px 18px; border-bottom: 1px solid var(--line); }
+  .dlg-eyebrow { font-size: 12px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; color: var(--purple-deep); padding-right: 40px; }
+  .dlg-step { margin-top: 8px; display: flex; align-items: center; gap: 14px; font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); }
+  .dlg-step .ln { width: 44px; height: 1px; background: var(--line); }
+  .dlg-x { position: absolute; top: 16px; right: 20px; width: 36px; height: 36px; border: 0; border-radius: 50%; background: transparent; color: var(--dim); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  .dlg-x:hover { background: var(--tint); color: var(--ink); }
+  .dlg-x .ic { width: 20px; height: 20px; }
+  .dlg-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 30px 32px 26px; }
+  .pane[hidden] { display: none; }
+  .dlg-title { font-family: var(--display); font-weight: 600; font-size: clamp(26px, 4.4vw, 34px); line-height: 1.15; letter-spacing: -0.02em; outline: none; }
+  .dlg-sub { margin-top: 10px; color: var(--mute); font-size: 16px; }
+  .q { display: block; margin: 28px 0 12px; font-size: 12.5px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+  .q i { color: var(--purple); font-style: normal; margin-left: 4px; }
+  .opts { display: grid; gap: 12px; border: 0; padding: 0; margin: 0; }
+  .opts.two { grid-template-columns: 1fr 1fr; }
+  .opt { position: relative; display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: var(--white); border: 1px solid var(--line); border-radius: 20px; cursor: pointer; font-size: 16px; font-weight: 500; line-height: 1.3; transition: background-color .15s ease, border-color .15s ease; }
+  .opt:hover { border-color: #c9b8ee; }
+  .opt input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+  .opt .dot { flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; border: 2px solid #d5c9ee; display: grid; place-items: center; }
+  .opt .dot::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--purple); transform: scale(0); transition: transform .15s ease; }
+  .opt.on { background: var(--tint); border-color: var(--purple); font-weight: 700; box-shadow: 0 0 0 1px var(--purple); }
+  .opt.on .dot { border-color: var(--purple); }
+  .opt.on .dot::after { transform: scale(1); }
+  .opt.focus { outline: 2px solid var(--purple); outline-offset: 2px; }
+  .inp { width: 100%; height: 56px; padding: 0 22px; background: #faf8ff; color: var(--ink); border: 1px solid var(--line); border-radius: 999px; font-size: 16px; }
+  .inp::placeholder { color: #8f87a3; }
+  .inp:focus { outline: none; background: var(--white); border-color: var(--purple); box-shadow: 0 0 0 3px rgba(109,40,217,.18); }
+  .q + .inp { margin-top: 0; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  .note-box { margin-top: 22px; padding: 18px 22px; background: var(--tint); border: 1px solid var(--line); border-radius: 22px; }
+  .note-box small { display: block; font-size: 11.5px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--purple-deep); }
+  .note-box p { margin-top: 8px; font-size: 15.5px; line-height: 1.55; }
+  .note-box p b { color: var(--purple-deep); font-weight: 700; }
+  .form-status { margin-top: 14px; min-height: 22px; font-size: 14.5px; }
+  .form-status.err { color: var(--err); }
+  .dlg-foot { flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 32px; border-top: 1px solid var(--line); background: var(--white); }
+  .nav-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 52px; padding: 0 28px; border-radius: 999px; font-size: 13.5px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; cursor: pointer; white-space: nowrap; transition: opacity .15s ease, background-color .15s ease; }
+  .nav-btn .ic { width: 18px; height: 18px; stroke-width: 2.4; }
+  .nav-btn.back { background: var(--white); color: var(--ink); border: 1px solid var(--line); }
+  .nav-btn.back:hover { background: var(--tint); }
+  .nav-btn.next { border: 0; color: var(--white); background: linear-gradient(135deg, #8b5cf6, var(--purple-deep)); box-shadow: 0 12px 26px -14px rgba(109,40,217,.8); }
+  .nav-btn.next:disabled { opacity: .4; cursor: not-allowed; box-shadow: none; }
+  .success { text-align: center; padding: 14px 0 6px; }
+  .success-ico { width: 60px; height: 60px; margin: 0 auto 20px; border-radius: 50%; background: #dcfce7; color: var(--ok); display: flex; align-items: center; justify-content: center; }
+  .success-ico .ic { width: 30px; height: 30px; stroke-width: 2.6; }
+  .success h3 { font-size: 26px; }
+  .success p { margin: 12px auto 0; max-width: 46ch; color: var(--mute); }
+  .success .btn { margin-top: 26px; }
+
+  /* ---------- Cases (prints de resultados) ---------- */
+  .cases-top { padding-top: 0; }
+  .rail { display: grid; gap: 22px; margin-top: 48px; }
+  .rail.c3 { grid-template-columns: repeat(3, 1fr); }
+  .rail.c4 { grid-template-columns: repeat(4, 1fr); }
+  .rail > * { margin: 0; }
+
+  .frame { display: flex; overflow: hidden; }
+  .frame img { display: block; }
+  .ph {
+    flex: 1; align-self: stretch; margin: 14px; border: 1.5px dashed #c9b8ee; border-radius: 14px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+    text-align: center; padding: 14px; color: var(--dim); font-size: 13.5px; line-height: 1.4;
+  }
+  .ph strong { color: var(--purple-deep); font-size: 14.5px; }
+
+  /* modelo claro (faixa logo abaixo da headline) */
+  .case-l { background: var(--tint); border: 1px solid var(--line); border-radius: 28px; padding: 14px 14px 20px; }
+  .case-l .frame { aspect-ratio: 16 / 11; background: var(--white); border: 1px solid var(--line); border-radius: 20px; align-items: center; justify-content: center; }
+  .case-l .frame img { max-width: 100%; height: 100%; width: auto; object-fit: contain; }
+  .case-cap { display: flex; align-items: center; gap: 14px; padding: 18px 8px 0; }
+  .avatar { flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%; background: var(--purple); color: var(--white); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-weight: 700; font-size: 15px; }
+  .case-cap b { font-family: var(--display); font-weight: 600; font-size: 16.5px; letter-spacing: .01em; text-transform: uppercase; line-height: 1.25; }
+
+  /* modelo escuro (seção "Mensagens que comprovam") */
+  .case-d { display: flex; flex-direction: column; background: var(--black); color: var(--white); border-radius: 26px; padding: 16px 16px 24px; }
+  .case-d .frame { aspect-ratio: 4 / 5; background: #17102a; border-radius: 18px; }
+  .case-d .frame img { width: 100%; height: 100%; object-fit: cover; }
+  .case-d .ph { border-color: #3a2d57; color: #b9aed1; }
+  .case-d .ph strong { color: #cdbdf5; }
+  .case-d h3 { margin-top: 18px; font-size: 18px; line-height: 1.25; letter-spacing: -0.01em; }
+  .case-d p { margin-top: 6px; color: #b9aed1; font-size: 14.5px; }
+
+  .cases-cta { text-align: center; margin-top: 44px; }
+  .foot-note { margin: 28px auto 0; max-width: 72ch; text-align: center; color: var(--dim); font-size: 13.5px; }
+
+  /* ---------- FAQ ---------- */
+  .faq-list { max-width: 800px; margin: 52px auto 0; border-top: 1px solid var(--line); }
+  .faq-list details { border-bottom: 1px solid var(--line); }
+  .faq-list summary {
+    list-style: none; cursor: pointer; padding: 22px 0;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    font-family: var(--display); font-weight: 600; font-size: 18px; letter-spacing: -0.005em;
+  }
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary .ic { width: 22px; height: 22px; color: var(--purple); flex-shrink: 0; transition: transform .2s ease; }
+  .faq-list details[open] summary .ic { transform: rotate(45deg); }
+  .faq-list details p { padding: 0 0 24px; color: var(--mute); max-width: 64ch; font-size: 16px; }
+
+  /* ---------- CTA final ---------- */
+  .final { background: linear-gradient(135deg, #4c1d95, #6d28d9); color: var(--white); text-align: center; }
+  .final h2 { margin: 0 auto; max-width: 17ch; font-size: clamp(30px, 4.6vw, 52px); }
+  .final p { margin-top: 18px; color: #e6dcfb; }
+  .final .btn { margin-top: 34px; background: var(--white); color: var(--purple-deep); box-shadow: 0 16px 34px -16px rgba(0,0,0,.5); }
+  .final .btn:hover { background: var(--purple-soft); }
+
+  footer { padding: 30px 0; border-top: 1px solid var(--line); }
+  footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+  footer .brand { font-size: 19px; }
+  footer .brand-tag { font-size: 14px; }
+  footer p { color: var(--dim); font-size: 14px; }
+
+  /* ---------- Responsivo ---------- */
+  @media (max-width: 1100px) {
+    .loss-grid { grid-template-columns: repeat(2, 1fr); }
+    .rail.c4 { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 920px) {
+    .gear-final { flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 760px) {
+    body { font-size: 16px; }
+    .section { padding: 60px 0; }
+    .hero { padding-bottom: 48px; }
+    .hero-top { margin-top: 40px; }
+    .loss-grid { grid-template-columns: 1fr; margin-top: 40px; }
+    .myth-grid { grid-template-columns: 1fr; margin-top: 40px; }
+    .rail { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 24px; gap: 14px; margin: 36px -24px 0; padding: 0 24px 6px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+    .rail::-webkit-scrollbar { display: none; }
+    .rail > * { flex: 0 0 80%; scroll-snap-align: start; }
+    .gear { grid-template-columns: 1fr; gap: 12px; padding: 20px; }
+    .gear-list { margin-top: 40px; }
+    .gear-final { padding: 24px 22px; }
+    .gear-final .btn { width: 100%; }
+    .modal { padding: 0; align-items: flex-end; }
+    .dialog { max-width: none; max-height: 94dvh; border-radius: 24px 24px 0 0; }
+    .dlg-head { padding: 18px 20px 14px; }
+    .dlg-x { right: 12px; top: 12px; }
+    .dlg-body { padding: 22px 20px 20px; }
+    .dlg-foot { padding: 14px 20px calc(14px + env(safe-area-inset-bottom)); }
+    .opts.two { grid-template-columns: 1fr; }
+    .dlg-foot { gap: 10px; }
+    .nav-btn { height: 50px; padding: 0 16px; gap: 8px; font-size: 12px; letter-spacing: .06em; }
+    .nav-btn.next { flex: 1 1 auto; min-width: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Ícones -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v16M5 13l7 7 7-7"/></symbol>
+  <symbol id="i-arrow-r" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-arrow-l" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+</svg>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="wrap">
+    <div class="brand" aria-label="Starnex Med"><span>Starnex</span><span class="brand-tag">Med</span></div>
+
+    <p class="hero-top">Exclusivo para <b>clínicas médicas</b> que querem parar de depender de indicação.</p>
+
+    <h1>Tenha <span class="hl">pacientes particulares de alto valor</span> <span class="u">todo mês</span>, que não pedem desconto, com previsibilidade na agenda.</h1>
+
+    <p class="hero-sub">O <strong>Método Nex+</strong> atrai, converte e fecha pacientes particulares pela internet. Tráfego, CRM e comercial em um só sistema, sem depender de convênio.</p>
+
+    <a class="btn" href="#" data-cta="hero" data-open>Agendar Diagnóstico</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= CASES: FAIXA INICIAL =================
+     Como preencher: troque o bloco <div class="ph">…</div> por
+     <img src="URL-DO-PRINT" alt="Descrição do resultado" loading="lazy">
+     e edite o número do avatar e o título do case. Prints de conversas: oculte nomes e dados de pacientes. -->
+<section class="section cases-top" aria-label="Resultados de clínicas atendidas">
+  <div class="wrap">
+    <div class="shead">
+      <span class="pill">Resultados reais</span>
+      <h2>Clínicas que já estruturaram a aquisição com o <span class="hl">Método Nex+</span></h2>
+    </div>
+
+    <div class="rail c3">
+      <figure class="case-l">
+        <div class="frame"><div class="ph"><strong>Print do case 01</strong>Espaço para o print do resultado</div></div>
+        <figcaption class="case-cap"><span class="avatar">01</span><b>Título do case</b></figcaption>
+      </figure>
+      <figure class="case-l">
+        <div class="frame"><div class="ph"><strong>Print do case 02</strong>Espaço para o print do resultado</div></div>
+        <figcaption class="case-cap"><span class="avatar">02</span><b>Título do case</b></figcaption>
+      </figure>
+      <figure class="case-l">
+        <div class="frame"><div class="ph"><strong>Print do case 03</strong>Espaço para o print do resultado</div></div>
+        <figcaption class="case-cap"><span class="avatar">03</span><b>Título do case</b></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ONDE A CLÍNICA PERDE PACIENTES ================= -->
+<section class="section tint">
+  <div class="wrap">
+    <div class="shead">
+      <span class="pill">Onde a clínica perde pacientes</span>
+      <h2>Sua clínica pode aparecer muito no digital e <span class="hl">ainda assim viver de indicação.</span></h2>
+      <p>Anúncio, Instagram e Google até existem. O que falta é o caminho entre o clique e a consulta.</p>
+    </div>
+
+    <div class="loss-grid">
+      <article class="loss-card">
+        <div class="loss-n">01</div>
+        <h3>A agenda depende de indicação</h3>
+        <p>Quando as indicações diminuem, a agenda diminui junto. Não existe um canal próprio que reponha pacientes.</p>
+      </article>
+      <article class="loss-card">
+        <div class="loss-n">02</div>
+        <h3>Os contatos se perdem no WhatsApp</h3>
+        <p>O paciente chama, a conversa esfria e ninguém sabe em que etapa cada contato parou.</p>
+      </article>
+      <article class="loss-card">
+        <div class="loss-n">03</div>
+        <h3>O atendimento muda de pessoa para pessoa</h3>
+        <p>Sem roteiro, cada atendente conduz do seu jeito e parte dos agendamentos fica pelo caminho.</p>
+      </article>
+      <article class="loss-card">
+        <div class="loss-n">04</div>
+        <h3>O investimento vira aposta</h3>
+        <p>Sem números por canal, ninguém sabe o que realmente traz paciente e o que só gera clique.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MITOS ================= -->
+<section class="section">
+  <div class="wrap">
+    <div class="shead">
+      <span class="pill">A grande armadilha</span>
+      <h2>Quatro soluções que parecem certas e <span class="hl">não resolvem o problema.</span></h2>
+    </div>
+
+    <div class="myth-grid">
+      <article class="myth">
+        <span class="pill">Mito #1</span>
+        <q>Se eu investir mais em anúncios, a agenda enche.</q>
+        <p><b>Falso.</b> Anúncio traz contato. Sem processo para atender e acompanhar, o contato esfria antes de virar consulta.</p>
+      </article>
+      <article class="myth">
+        <span class="pill">Mito #2</span>
+        <q>Se eu contratar mais uma atendente, o atendimento se organiza.</q>
+        <p><b>Falso.</b> Sem roteiro e sem acompanhamento, quem entra atende do seu jeito e o problema continua o mesmo.</p>
+      </article>
+      <article class="myth">
+        <span class="pill">Mito #3</span>
+        <q>Ter site e Instagram já é ter um canal de aquisição.</q>
+        <p><b>Falso.</b> Presença digital mostra a clínica. Canal de aquisição leva o paciente da busca até o agendamento.</p>
+      </article>
+      <article class="myth">
+        <span class="pill">Mito #4</span>
+        <q>Qualquer agência de marketing resolve.</q>
+        <p><b>Falso.</b> Clínica médica tem jornada, comunicação e regras próprias. Agência generalista aplica a mesma receita em todo tipo de negócio.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= A VIRADA ================= -->
+<section class="section tint">
+  <div class="wrap turn">
+    <span class="pill">A virada</span>
+    <h2>O que falta na sua clínica não é mais marketing. <span class="hl">É estrutura.</span></h2>
+    <p>Quando <strong>tráfego, página, Google, CRM e atendimento comercial</strong> trabalham como um único sistema, a agenda deixa de oscilar e passa a ter ritmo.</p>
+    <p>Foi essa estrutura que organizamos no <strong>Método Nex+</strong>. Não é teoria solta: é o processo que aplicamos na rotina de clínicas médicas.</p>
+    <div class="turn-arrow" aria-hidden="true"><svg class="ic"><use href="#i-down"/></svg></div>
+  </div>
+</section>
+
+<!-- ================= ENTREGAS (MODELO JDP MED) ================= -->
+<section class="section gears">
+  <div class="wrap">
+    <div class="shead">
+      <span class="pill">O que entregamos na prática</span>
+      <h2>As <span class="hl">6 engrenagens</span> do Método Nex+ que estruturam a aquisição de pacientes da sua clínica.</h2>
+      <p>Cada área isolada melhora uma parte. <b>Conectadas, elas atraem, convertem e fecham pacientes particulares</b> sem depender apenas de indicação.</p>
+    </div>
+
+    <div class="gear-list">
+      <article class="gear">
+        <span class="gear-n">01</span>
+        <div>
+          <h3>Aquisição previsível de pacientes <span class="tag">Atrair</span></h3>
+          <p>Tráfego pago no Meta Ads e no Google Ads, campanhas por procedimento, ofertas e <b>canais de captação</b> organizados para gerar demanda de <b>pacientes particulares</b> todo mês, com verba acompanhada por custo de agendamento.</p>
+        </div>
+      </article>
+
+      <article class="gear">
+        <span class="gear-n">02</span>
+        <div>
+          <h3>Criativos que atraem o paciente <span class="tag">Atrair</span></h3>
+          <p>Edição de vídeos, peças para anúncios, variações para teste e linguagem do mercado médico que posicionam o doutor como <b>referência na especialidade</b> e geram agendamentos.</p>
+        </div>
+      </article>
+
+      <article class="gear">
+        <span class="gear-n">03</span>
+        <div>
+          <h3>Presença local no Google <span class="tag">Atrair</span></h3>
+          <p>Google Perfil da Empresa, fotos, serviços, informações e <b>gestão de avaliações</b> otimizados para a clínica aparecer quando o paciente busca a sua especialidade na cidade.</p>
+        </div>
+      </article>
+
+      <article class="gear">
+        <span class="gear-n">04</span>
+        <div>
+          <h3>Página que transforma clique em agendamento <span class="tag">Converter</span></h3>
+          <p>Landing page de <b>alta conversão</b> por procedimento, formulário ligado direto ao CRM e <b>Pixel e eventos</b> configurados para medir o que cada anúncio entrega.</p>
+        </div>
+      </article>
+
+      <article class="gear">
+        <span class="gear-n">05</span>
+        <div>
+          <h3>CRM com funil de pacientes <span class="tag">Fechar</span></h3>
+          <p>Registro de cada contato, etapas, histórico, responsáveis e <b>indicadores do funil</b>, do primeiro contato ao fechamento, sem paciente perdido no caminho.</p>
+        </div>
+      </article>
+
+      <article class="gear">
+        <span class="gear-n">06</span>
+        <div>
+          <h3>Comercial que leva o paciente à consulta <span class="tag">Fechar</span></h3>
+          <p>Playbook comercial, roteiro de atendimento, <b>cadência de follow-up</b> e respostas para objeções como preço e “vou pensar” para a equipe transformar interesse em consulta agendada.</p>
+        </div>
+      </article>
+
+      <div class="gear-final">
+        <div>
+          <h3>Tudo conectado, do primeiro anúncio à consulta agendada.</h3>
+          <p>No diagnóstico, mostramos como aplicar o Método Nex+ na sua clínica.</p>
+        </div>
+        <a class="btn" href="#" data-cta="metodo" data-open>Agendar Diagnóstico</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CASES: MENSAGENS QUE COMPROVAM =================
+     Como preencher: troque o bloco <div class="ph">…</div> por
+     <img src="URL-DO-PRINT" alt="Descrição do resultado" loading="lazy">
+     e edite o título e a linha de apoio. Para mais cases, duplique um <figure class="case-d"> dentro de .rail.
+     Prints de conversas: oculte nomes e dados de pacientes. -->
+<section class="section" aria-label="Mensagens que comprovam o Método Nex+">
+  <div class="wrap">
+    <div class="shead">
+      <span class="pill">Resultados reais</span>
+      <h2>Mensagens que <span class="hl">comprovam</span> o Método Nex+</h2>
+    </div>
+
+    <div class="rail c4">
+      <figure class="case-d">
+        <div class="frame"><div class="ph"><strong>Print do case 01</strong>Proporção 4:5 (retrato)</div></div>
+        <h3>Título do case</h3>
+        <p>Resultado em uma linha</p>
+      </figure>
+      <figure class="case-d">
+        <div class="frame"><div class="ph"><strong>Print do case 02</strong>Proporção 4:5 (retrato)</div></div>
+        <h3>Título do case</h3>
+        <p>Resultado em uma linha</p>
+      </figure>
+      <figure class="case-d">
+        <div class="frame"><div class="ph"><strong>Print do case 03</strong>Proporção 4:5 (retrato)</div></div>
+        <h3>Título do case</h3>
+        <p>Resultado em uma linha</p>
+      </figure>
+      <figure class="case-d">
+        <div class="frame"><div class="ph"><strong>Print do case 04</strong>Proporção 4:5 (retrato)</div></div>
+        <h3>Título do case</h3>
+        <p>Resultado em uma linha</p>
+      </figure>
+    </div>
+
+    <div class="cases-cta"><a class="btn" href="#" data-cta="cases" data-open>Agendar Diagnóstico</a></div>
+    <p class="foot-note">Os resultados variam conforme especialidade, oferta, região e investimento em mídia.</p>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="section tint">
+  <div class="wrap">
+    <div class="shead"><h2>Perguntas frequentes</h2></div>
+
+    <div class="faq-list">
+      <details name="faq">
+        <summary>O diagnóstico realmente é gratuito?<svg class="ic"><use href="#i-plus"/></svg></summary>
+        <p>Sim. São 30 minutos online, sem custo e sem compromisso. Analisamos como a sua clínica capta e atende pacientes hoje e apontamos onde estão as oportunidades.</p>
+      </details>
+      <details name="faq">
+        <summary>A Starnex Med atende qual tipo de clínica?<svg class="ic"><use href="#i-plus"/></svg></summary>
+        <p>A Starnex Med é voltada a clínicas e consultórios médicos. No diagnóstico entendemos a especialidade, o procedimento com maior demanda e a região de atuação para adaptar a estratégia ao seu caso.</p>
+      </details>
+      <details name="faq">
+        <summary>O investimento em anúncios está incluso?<svg class="ic"><use href="#i-plus"/></svg></summary>
+        <p>Não. O valor do serviço é separado da verba de anúncios, que é investida diretamente no Meta Ads e no Google Ads e fica sob o seu controle.</p>
+      </details>
+      <details name="faq">
+        <summary>Preciso ter site ou já anunciar?<svg class="ic"><use href="#i-plus"/></svg></summary>
+        <p>Não. A LP de alta conversão faz parte das entregas e, se a clínica ainda não anuncia, estruturamos as campanhas do zero.</p>
+      </details>
+      <details name="faq">
+        <summary>Como funcionam o CRM e o playbook comercial?<svg class="ic"><use href="#i-plus"/></svg></summary>
+        <p>Todo contato que chega das campanhas e da LP entra no CRM, organizado por etapas, como novo contato, em atendimento e agendado. O playbook comercial orienta a equipe sobre como conduzir cada etapa até o agendamento.</p>
+      </details>
+      <details name="faq">
+        <summary>As campanhas respeitam as normas de publicidade médica?<svg class="ic"><use href="#i-plus"/></svg></summary>
+        <p>A publicidade médica tem regras próprias do CFM, e elas entram no planejamento das campanhas e dos criativos desde o início.</p>
+      </details>
+      <details name="faq">
+        <summary>Em quanto tempo começo a receber pacientes?<svg class="ic"><use href="#i-plus"/></svg></summary>
+        <p>Depende da especialidade, da região, da oferta e da verba de mídia. Não prometemos um prazo único: no diagnóstico apresentamos uma expectativa realista para o seu caso.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA FINAL ================= -->
+<section class="section final">
+  <div class="wrap">
+    <h2>Chega de agenda que depende de indicação.</h2>
+    <p>Diagnóstico de 30 minutos, online e sem custo.</p>
+    <a class="btn" href="#" data-cta="final" data-open>Agendar Diagnóstico</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="brand" aria-label="Starnex Med"><span>Starnex</span><span class="brand-tag">Med</span></div>
+    <p>Hub de soluções para clínicas. © 2026 Starnex. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<!-- ================= FORMULÁRIO EM ETAPAS (modal) ================= -->
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dlg-eyebrow">
+    <div class="dlg-bar" aria-hidden="true"><i id="dlg-prog"></i></div>
+
+    <div class="dlg-head">
+      <div class="dlg-eyebrow" id="dlg-eyebrow">Diagnóstico · Starnex Med</div>
+      <div class="dlg-step" id="dlg-step"><span>Passo <span id="dlg-cur">1</span> de 4</span><span class="ln" aria-hidden="true"></span><span>~2 min</span></div>
+      <button type="button" class="dlg-x" id="dlg-close" aria-label="Fechar"><svg class="ic"><use href="#i-x"/></svg></button>
+    </div>
+
+    <form id="lead-form" novalidate>
+      <div class="dlg-body" id="dlg-body">
+
+        <section class="pane" data-step="1">
+          <h2 class="dlg-title" tabindex="-1">Conta um pouco sobre você.</h2>
+          <p class="dlg-sub">Começamos pelo essencial para direcionar o diagnóstico.</p>
+          <span class="q" id="q-dono">Você é dono de clínica? <i>*</i></span>
+          <div class="opts two" role="radiogroup" aria-labelledby="q-dono">
+            <label class="opt"><input type="radio" name="dono" value="Sim"><span class="dot"></span>Sim, sou dono(a)</label>
+            <label class="opt"><input type="radio" name="dono" value="Não"><span class="dot"></span>Não sou dono(a)</label>
+          </div>
+        </section>
+
+        <section class="pane" data-step="2" hidden>
+          <h2 class="dlg-title" tabindex="-1">Sua atuação.</h2>
+          <p class="dlg-sub">Informações profissionais.</p>
+          <label class="q" for="especialidade">Especialidade <i>*</i></label>
+          <input class="inp" id="especialidade" name="especialidade" type="text" autocomplete="off" placeholder="Ex: Cirurgia plástica, Dermatologia, Oftalmologia...">
+          <span class="q" id="q-invest">Quanto você investe em anúncios por mês? <i>*</i></span>
+          <div class="opts two" role="radiogroup" aria-labelledby="q-invest">
+            <label class="opt"><input type="radio" name="investimento" value="Ainda não invisto"><span class="dot"></span>Ainda não invisto</label>
+            <label class="opt"><input type="radio" name="investimento" value="Até R$ 1.000/mês"><span class="dot"></span>Até R$ 1.000/mês</label>
+            <label class="opt"><input type="radio" name="investimento" value="De R$ 1.000 a R$ 3.000/mês"><span class="dot"></span>R$ 1.000 a R$ 3.000/mês</label>
+            <label class="opt"><input type="radio" name="investimento" value="De R$ 3.000 a R$ 6.000/mês"><span class="dot"></span>R$ 3.000 a R$ 6.000/mês</label>
+            <label class="opt"><input type="radio" name="investimento" value="Acima de R$ 6.000/mês"><span class="dot"></span>Acima de R$ 6.000/mês</label>
+          </div>
+        </section>
+
+        <section class="pane" data-step="3" hidden>
+          <h2 class="dlg-title" tabindex="-1">Sobre a sua clínica.</h2>
+          <p class="dlg-sub">Esses números ajudam a calibrar o diagnóstico com você.</p>
+          <span class="q" id="q-fat">Faturamento mensal médio da clínica <i>*</i></span>
+          <div class="opts" role="radiogroup" aria-labelledby="q-fat">
+            <label class="opt"><input type="radio" name="faturamento" value="Até R$ 30 mil/mês"><span class="dot"></span>Até R$ 30 mil/mês</label>
+            <label class="opt"><input type="radio" name="faturamento" value="R$ 30 mil a R$ 50 mil/mês"><span class="dot"></span>R$ 30 mil a R$ 50 mil/mês</label>
+            <label class="opt"><input type="radio" name="faturamento" value="R$ 50 mil a R$ 80 mil/mês"><span class="dot"></span>R$ 50 mil a R$ 80 mil/mês</label>
+            <label class="opt"><input type="radio" name="faturamento" value="R$ 80 mil a R$ 200 mil/mês"><span class="dot"></span>R$ 80 mil a R$ 200 mil/mês</label>
+            <label class="opt"><input type="radio" name="faturamento" value="Acima de R$ 200 mil/mês"><span class="dot"></span>Acima de R$ 200 mil/mês</label>
+          </div>
+          <span class="q" id="q-des">Qual seu maior desafio comercial hoje? <i>*</i></span>
+          <div class="opts" role="radiogroup" aria-labelledby="q-des">
+            <label class="opt"><input type="radio" name="desafio" value="Captação de pacientes"><span class="dot"></span>Captação de pacientes</label>
+            <label class="opt"><input type="radio" name="desafio" value="Fechar pacientes de alto valor"><span class="dot"></span>Fechar pacientes de alto valor</label>
+            <label class="opt"><input type="radio" name="desafio" value="Falta de processo comercial"><span class="dot"></span>Falta de processo comercial</label>
+            <label class="opt"><input type="radio" name="desafio" value="Atendimento e follow-up da equipe"><span class="dot"></span>Atendimento e follow-up da equipe</label>
+          </div>
+        </section>
+
+        <section class="pane" data-step="4" hidden>
+          <h2 class="dlg-title" tabindex="-1">Como entramos em contato?</h2>
+          <p class="dlg-sub">Último passo. Nossa equipe entra em contato em breve.</p>
+          <div class="note-box">
+            <small>Suas informações</small>
+            <p>Seus dados ficam apenas com nosso time. <b>Não compartilhamos com terceiros.</b> Vamos usar para organizar o seu diagnóstico e entrar em contato pelo WhatsApp.</p>
+          </div>
+          <label class="q" for="nome">Nome completo <i>*</i></label>
+          <input class="inp" id="nome" name="nome" type="text" autocomplete="name" placeholder="Seu nome">
+          <label class="q" for="email">E-mail <i>*</i></label>
+          <input class="inp" id="email" name="email" type="email" autocomplete="email" placeholder="seu@email.com">
+          <label class="q" for="whatsapp">WhatsApp <i>*</i></label>
+          <input class="inp" id="whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000">
+          <input class="hp" type="text" name="website" id="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="success" id="form-success" hidden>
+          <div class="success-ico"><svg class="ic"><use href="#i-check"/></svg></div>
+          <h3>Recebemos seus dados.</h3>
+          <p>Nossa equipe vai chamar você no WhatsApp para agendar o diagnóstico. Quer agilizar? Chame a gente agora.</p>
+          <a class="btn" id="success-wa" href="https://wa.me/55999132811" target="_blank" rel="noopener">Falar no WhatsApp</a>
+        </section>
+      </div>
+
+      <div class="dlg-foot" id="dlg-foot">
+        <button type="button" class="nav-btn back" id="btn-back"><svg class="ic"><use href="#i-arrow-l"/></svg><span>Voltar</span></button>
+        <button type="button" class="nav-btn next" id="btn-next"><span id="btn-next-label">Avançar</span><svg class="ic"><use href="#i-arrow-r"/></svg></button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  /* ---------- Formulário em etapas -> CRM (ingest-lead) ---------- */
+  (function () {
+    var INGEST_URL = 'https://gtnnqoebcudsnzqicrto.supabase.co/functions/v1/ingest-lead';
+    var ANON_KEY = 'sb_publishable_9RxJuQiH8Iqg6fEGBmF_fQ_NdA7lCav';
+    var WHATSAPP = '55999132811';
+    var TOTAL = 4;
+
+    var modal = document.getElementById('modal');
+    var form = document.getElementById('lead-form');
+    var panes = [].slice.call(form.querySelectorAll('.pane'));
+    var progress = document.getElementById('dlg-prog');
+    var curEl = document.getElementById('dlg-cur');
+    var stepWrap = document.getElementById('dlg-step');
+    var foot = document.getElementById('dlg-foot');
+    var btnBack = document.getElementById('btn-back');
+    var btnNext = document.getElementById('btn-next');
+    var nextLabel = document.getElementById('btn-next-label');
+    var statusEl = document.getElementById('form-status');
+    var success = document.getElementById('form-success');
+    var successWa = document.getElementById('success-wa');
+    var phone = document.getElementById('whatsapp');
+    var behind = [].slice.call(document.querySelectorAll('header.hero, main, footer'));
+    var step = 1, sending = false, done = false, lastTrigger = null;
+
+    function val(name) {
+      var c = form.querySelector('input[name="' + name + '"]:checked');
+      return c ? c.value : '';
+    }
+    function digits(v) { return v.replace(/\D/g, ''); }
+
+    function valid(n) {
+      if (n === 1) return !!val('dono');
+      if (n === 2) return form.especialidade.value.trim().length >= 3 && !!val('investimento');
+      if (n === 3) return !!val('faturamento') && !!val('desafio');
+      var nome = form.nome.value.trim();
+      return /\S+\s+\S+/.test(nome) && /^\S+@\S+\.\S+$/.test(form.email.value.trim()) && digits(form.whatsapp.value).length >= 10;
+    }
+
+    function render(focusPane) {
+      panes.forEach(function (p) { p.hidden = Number(p.getAttribute('data-step')) !== step; });
+      progress.style.width = (step / TOTAL * 100) + '%';
+      curEl.textContent = step;
+      nextLabel.textContent = step === TOTAL ? 'Agendar Diagnóstico' : 'Avançar';
+      btnNext.disabled = sending || !valid(step);
+      statusEl.textContent = ''; statusEl.className = 'form-status';
+      if (focusPane) {
+        var pane = form.querySelector('.pane[data-step="' + step + '"]');
+        var t = pane.querySelector('.dlg-title');
+        if (t) t.focus({ preventScroll: true });
+        document.getElementById('dlg-body').scrollTop = 0;
+      }
+    }
+
+    function open(trigger) {
+      lastTrigger = trigger || null;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.documentElement.classList.add('modal-open');
+      behind.forEach(function (e) { e.inert = true; });
+      render(true);
+    }
+    function close() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.documentElement.classList.remove('modal-open');
+      behind.forEach(function (e) { e.inert = false; });
+      if (lastTrigger && lastTrigger.focus) lastTrigger.focus({ preventScroll: true });
+    }
+
+    function go(delta) {
+      if (delta < 0 && step === 1) { close(); return; }
+      step = Math.min(TOTAL, Math.max(1, step + delta));
+      render(true);
+    }
+
+    /* abre o modal por qualquer CTA da página */
+    [].forEach.call(document.querySelectorAll('[data-open]'), function (el) {
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (typeof fbq === 'function') fbq('trackCustom', 'CTAClick', { location: el.getAttribute('data-cta') });
+        open(el);
+      });
+    });
+    document.getElementById('dlg-close').addEventListener('click', close);
+    modal.addEventListener('mousedown', function (e) { if (e.target === modal) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
+
+    /* cartões de rádio */
+    form.addEventListener('change', function (e) {
+      var t = e.target;
+      if (t.type === 'radio') {
+        [].forEach.call(form.querySelectorAll('input[name="' + t.name + '"]'), function (r) {
+          r.parentNode.classList.toggle('on', r.checked);
+        });
+      }
+      btnNext.disabled = sending || !valid(step);
+    });
+    form.addEventListener('focusin', function (e) {
+      var t = e.target, vis = false;
+      try { vis = t.matches(':focus-visible'); } catch (err) { vis = true; }
+      if (t.type === 'radio' && vis) t.parentNode.classList.add('focus');
+    });
+    form.addEventListener('focusout', function (e) { if (e.target.type === 'radio') e.target.parentNode.classList.remove('focus'); });
+    form.addEventListener('input', function () { btnNext.disabled = sending || !valid(step); });
+
+    /* máscara de WhatsApp */
+    phone.addEventListener('input', function () {
+      var d = digits(phone.value).slice(0, 11), out = d;
+      if (d.length > 6) out = '(' + d.slice(0, 2) + ') ' + d.slice(2, d.length > 10 ? 7 : 6) + '-' + d.slice(d.length > 10 ? 7 : 6);
+      else if (d.length > 2) out = '(' + d.slice(0, 2) + ') ' + d.slice(2);
+      else if (d.length > 0) out = '(' + d;
+      phone.value = out;
+    });
+
+    form.addEventListener('submit', function (e) { e.preventDefault(); });
+    form.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && e.target.tagName === 'INPUT' && e.target.type !== 'radio') {
+        e.preventDefault();
+        if (valid(step)) next();
+      }
+    });
+    btnBack.addEventListener('click', function () { go(-1); });
+    btnNext.addEventListener('click', next);
+
+    function setError(msg) { statusEl.textContent = msg; statusEl.className = 'form-status err'; }
+
+    function next() {
+      if (!valid(step) || sending) return;
+      if (step < TOTAL) { go(1); return; }
+      if (document.getElementById('website').value) return; /* honeypot */
+
+      var params = new URLSearchParams(window.location.search);
+      var especialidade = form.especialidade.value.trim();
+      var nome = form.nome.value.trim();
+      var payload = {
+        nome_completo: nome,
+        email: form.email.value.trim(),
+        whatsapp: form.whatsapp.value.trim(),
+        especialidade: especialidade,
+        investimento_mensal_anuncios: val('investimento'),
+        observacoes: [
+          'Origem: LP Starnex Med',
+          'Dono de clínica: ' + val('dono'),
+          'Faturamento mensal médio: ' + val('faturamento'),
+          'Maior desafio comercial: ' + val('desafio')
+        ].join('\n'),
+        origem: 'LP Starnex Med',
+        utm_source: params.get('utm_source'),
+        utm_campaign: params.get('utm_campaign'),
+        utm_medium: params.get('utm_medium'),
+        fbclid: params.get('fbclid')
+      };
+
+      sending = true;
+      btnNext.disabled = true;
+      nextLabel.textContent = 'Enviando...';
+
+      fetch(INGEST_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'apikey': ANON_KEY },
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) {
+          return res.json().catch(function () { return {}; }).then(function (body) {
+            if (!res.ok) throw new Error(body.error || 'Erro ao enviar');
+          });
+        })
+        .then(function () {
+          sending = false; done = true;
+          if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Starnex Med', content_category: especialidade });
+          successWa.href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent('Olá! Sou ' + nome + ' e acabei de solicitar o diagnóstico da Starnex Med.');
+          panes.forEach(function (p) { p.hidden = true; });
+          success.hidden = false;
+          stepWrap.hidden = true;
+          foot.hidden = true;
+          progress.style.width = '100%';
+          document.getElementById('dlg-body').scrollTop = 0;
+          successWa.focus({ preventScroll: true });
+        })
+        .catch(function (err) {
+          console.error(err);
+          sending = false;
+          render(false);
+          setError('Não foi possível enviar agora. Tente novamente ou fale pelo WhatsApp.');
+        });
+    }
+  })();
+</script>
+
+</body>
+</html>
