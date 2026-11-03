@@ -692,13 +692,14 @@ fbq('track', 'PageView');
         </div>
         <input class="inp inp-other" name="esp_outra" type="text" autocomplete="off" placeholder="Qual é a sua especialidade?" aria-label="Qual é a sua especialidade?" hidden>
 
+        <!-- MQL = faixas com data-mql="1" (R$ 50 mil ou mais). Elas vão para /obrigado/ (com pixel); as demais, para /recebido/ (sem pixel). -->
         <span class="q" id="{{u}}-q-fat">Faturamento mensal médio da clínica <i>*</i></span>
         <div class="opts two" role="radiogroup" aria-labelledby="{{u}}-q-fat">
           <label class="opt"><input type="radio" name="fat" value="Até R$ 30 mil/mês"><span class="dot"></span>Até R$ 30 mil/mês</label>
           <label class="opt"><input type="radio" name="fat" value="R$ 30 mil a R$ 50 mil/mês"><span class="dot"></span>R$ 30 mil a R$ 50 mil/mês</label>
-          <label class="opt"><input type="radio" name="fat" value="R$ 50 mil a R$ 80 mil/mês"><span class="dot"></span>R$ 50 mil a R$ 80 mil/mês</label>
-          <label class="opt"><input type="radio" name="fat" value="R$ 80 mil a R$ 200 mil/mês"><span class="dot"></span>R$ 80 mil a R$ 200 mil/mês</label>
-          <label class="opt"><input type="radio" name="fat" value="Acima de R$ 200 mil/mês"><span class="dot"></span>Acima de R$ 200 mil/mês</label>
+          <label class="opt"><input type="radio" name="fat" value="R$ 50 mil a R$ 80 mil/mês" data-mql="1"><span class="dot"></span>R$ 50 mil a R$ 80 mil/mês</label>
+          <label class="opt"><input type="radio" name="fat" value="R$ 80 mil a R$ 200 mil/mês" data-mql="1"><span class="dot"></span>R$ 80 mil a R$ 200 mil/mês</label>
+          <label class="opt"><input type="radio" name="fat" value="Acima de R$ 200 mil/mês" data-mql="1"><span class="dot"></span>Acima de R$ 200 mil/mês</label>
         </div>
       </section>
 
@@ -752,6 +753,11 @@ fbq('track', 'PageView');
     var INGEST_URL = 'https://gtnnqoebcudsnzqicrto.supabase.co/functions/v1/ingest-lead';
     var ANON_KEY = 'sb_publishable_9RxJuQiH8Iqg6fEGBmF_fQ_NdA7lCav';
     var WHATSAPP = '55999132811';
+    /* Páginas de obrigado (mesmo domínio, para o pixel manter o cookie do clique).
+       MQL  -> /obrigado/  : carrega o pixel e dispara o Lead (é o que a campanha otimiza)
+       Resto -> /recebido/ : sem pixel */
+    var URL_MQL = 'obrigado/';
+    var URL_NAO_MQL = 'recebido/';
     var TOTAL = 2;
 
     var tpl = document.getElementById('form-tpl');
@@ -870,6 +876,8 @@ fbq('track', 'PageView');
         var esp = form.elements.esp.value;
         var especialidade = esp === 'Outra' ? other.value.trim() : esp;
         var nome = form.elements.nome.value.trim();
+        var fatEl = form.querySelector('input[name="fat"]:checked');
+        var mql = !!fatEl && fatEl.getAttribute('data-mql') === '1';
         var local = kind === 'inline' ? 'primeira seção' : (exitMode ? 'pop-up de saída' : 'pop-up (botão)');
         var payload = {
           nome_completo: nome,
@@ -905,9 +913,17 @@ fbq('track', 'PageView');
           })
           .then(function () {
             sending = false; submitted = true;
-            if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Starnex Med', content_category: especialidade });
+            /* O evento Lead NÃO é disparado aqui: ele só existe em /obrigado/ (leads MQL).
+               Este aviso (1 por envio) é o que autoriza o Lead lá, uma única vez. */
+            try {
+              sessionStorage.setItem('sx_lead', JSON.stringify({
+                id: 'lead_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8),
+                mql: mql, esp: especialidade, fat: fatEl.value, fired: false
+              }));
+            } catch (err) {}
             forms.forEach(function (f) { f.showSuccess(nome); });
             if (modal.classList.contains('open')) forms[forms.length - 1].focusSuccess();
+            window.location.assign(mql ? URL_MQL : URL_NAO_MQL);
           })
           .catch(function (err) {
             console.error(err);
