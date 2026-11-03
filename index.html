@@ -229,42 +229,27 @@ fbq('track', 'PageView');
   /* ---------- Feedbacks (faixas automáticas) ---------- */
   .band { padding: 6px 0 72px; }
   .band-label { text-align: center; margin-bottom: 22px; font-size: 12.5px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--purple-deep); }
-  .marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
-  .marquee-track { display: flex; gap: 20px; width: max-content; padding: 6px 20px 6px 0; animation: marq 60s linear infinite; }
-  .marquee:hover .marquee-track, .marquee:focus-within .marquee-track { animation-play-state: paused; }
-  @keyframes marq { to { transform: translateX(-50%); } }
-  .marquee-track > * { margin: 0; }
-  .marquee .case-l { flex: 0 0 340px; }
-
   .frame { display: flex; overflow: hidden; }
   .frame img { display: block; }
-  .ph {
-    flex: 1; align-self: stretch; margin: 14px; border: 1.5px dashed #c9b8ee; border-radius: 14px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
-    text-align: center; padding: 14px; color: var(--dim); font-size: 13.5px; line-height: 1.4;
-  }
-  .ph strong { color: var(--purple-deep); font-size: 14.5px; }
-
-  /* modelo claro */
-  .case-l { background: var(--tint); border: 1px solid var(--line); border-radius: 28px; padding: 14px 14px 20px; }
-  .case-l .frame { aspect-ratio: 16 / 11; background: var(--white); border: 1px solid var(--line); border-radius: 20px; align-items: center; justify-content: center; }
-  .case-l .frame img { max-width: 100%; height: 100%; width: auto; object-fit: contain; }
-  .case-cap { display: flex; align-items: center; gap: 14px; padding: 18px 8px 0; }
-  .avatar { flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%; background: var(--purple); color: var(--white); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-weight: 700; font-size: 15px; }
-  .case-cap b { font-family: var(--display); font-weight: 600; font-size: 16.5px; letter-spacing: .01em; text-transform: uppercase; line-height: 1.25; }
+  /* modelo claro (feedbacks do topo): só o print, sem legenda */
+  .case-l { background: var(--tint); border: 1px solid var(--line); border-radius: 28px; padding: 14px; }
+  .case-l .frame { background: #0e0e10; border: 1px solid var(--line); border-radius: 20px; }
+  .case-l .frame picture { display: block; width: 100%; }
+  .case-l .frame img { display: block; width: 100%; height: auto; -webkit-user-drag: none; user-select: none; }
 
   /* modelo escuro */
   .case-d { display: flex; flex-direction: column; background: var(--black); color: var(--white); border-radius: 26px; padding: 16px 16px 24px; }
   .case-d .frame { aspect-ratio: 4 / 5; background: #17102a; border-radius: 18px; }
   .case-d .frame picture { display: block; width: 100%; height: 100%; }
   .case-d .frame img { width: 100%; height: 100%; object-fit: cover; -webkit-user-drag: none; user-select: none; }
-  .case-d .ph { border-color: #3a2d57; color: #b9aed1; }
-  .case-d .ph strong { color: #cdbdf5; }
   .case-d h3 { margin-top: 18px; font-size: 18px; line-height: 1.25; letter-spacing: -0.01em; }
   .case-d p { margin-top: 6px; color: #b9aed1; font-size: 14.5px; }
 
   /* ---------- Resultados: carrossel dos cases ---------- */
-  .rs { --cw: 280px; --gap: 20px; --pad: 24px; position: relative; max-width: 1248px; margin: 48px auto 0; }
+  .rs { --cw: 280px; --gap: 20px; --pad: 24px; --arrow-top: calc(22px + (var(--cw) - 32px) * .625); position: relative; max-width: 1248px; margin: 48px auto 0; }
+  /* feedbacks do topo: prints de alturas diferentes, centralizados na vertical */
+  .rs--fb { --cw: 372px; --arrow-top: calc((100% - 42px) / 2); margin-top: 0; }
+  .rs--fb .rs-track { align-items: center; }
   .rs-view {
     overflow-x: auto; overflow-y: hidden; padding-block: 6px;
     scroll-snap-type: x mandatory; scroll-padding-inline: var(--pad);
@@ -276,10 +261,10 @@ fbq('track', 'PageView');
   .rs-view:focus-visible { outline: 2px solid var(--purple); outline-offset: -2px; border-radius: 16px; }
   .rs-view.is-drag { cursor: grabbing; }
   .rs-track { display: flex; gap: var(--gap); width: max-content; min-width: 100%; padding-inline: var(--pad); }
-  .rs-track > .case-d { flex: 0 0 var(--cw); width: var(--cw); margin: 0; scroll-snap-align: start; }
+  .rs-track > * { flex: 0 0 var(--cw); width: var(--cw); margin: 0; scroll-snap-align: start; }
   .rs:not(.is-static) .rs-view { cursor: grab; }
-  .rs:not(.is-static) .rs-track > .case-d { opacity: .5; transition: opacity .3s ease; }
-  .rs:not(.is-static) .rs-track > .case-d.is-active { opacity: 1; }
+  .rs:not(.is-static) .rs-track > * { opacity: .5; transition: opacity .3s ease; }
+  .rs:not(.is-static) .rs-track > .is-active { opacity: 1; }
   .frame.is-missing img, .frame.is-missing picture { visibility: hidden; }
   /* arte dos cards: aparece enquanto não há imagem real; quando a imagem carrega, ela cobre a arte */
   .case-d .frame { position: relative; }
@@ -296,7 +281,7 @@ fbq('track', 'PageView');
   .rs.is-static .rs-arrow, .rs.is-static .rs-dots { display: none; }
 
   .rs-arrow {
-    position: absolute; z-index: 2; top: calc(22px + (var(--cw) - 32px) * .625); transform: translateY(-50%);
+    position: absolute; z-index: 2; top: var(--arrow-top); transform: translateY(-50%);
     width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line); background: var(--white); color: var(--purple-deep);
     display: flex; align-items: center; justify-content: center; cursor: pointer;
     box-shadow: 0 12px 28px -14px rgba(11,7,20,.55); transition: background-color .15s ease, opacity .15s ease;
@@ -379,8 +364,8 @@ fbq('track', 'PageView');
     .hero-form { margin-top: 26px; }
     .myth-grid { grid-template-columns: 1fr; margin-top: 40px; }
     .band { padding-bottom: 52px; }
-    .marquee .case-l { flex-basis: 280px; }
     .rs { --cw: min(78vw, 300px); --gap: 16px; --pad: 16px; }
+    .rs--fb { --cw: min(80vw, 320px); }
     .rs-arrow { display: none; }
     .gear { grid-template-columns: 1fr; gap: 10px; padding: 16px 18px; align-items: start; }
     .gear-list { margin-top: 36px; }
@@ -402,8 +387,6 @@ fbq('track', 'PageView');
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     * { transition: none !important; }
-    .marquee-track { animation: none; }
-    .marquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
     .pv-tile { animation: none; }
   }
 </style>
@@ -440,40 +423,17 @@ fbq('track', 'PageView');
 
 <main>
 
-<!-- ================= FEEDBACKS: FAIXA AUTOMÁTICA =================
-     Como preencher: troque o bloco <div class="ph">…</div> por
-     <img src="URL-DO-PRINT" alt="Descrição do feedback" loading="lazy">
-     e edite o número do avatar e o título. Para mais cards, duplique um <figure class="case-l">.
-     Prints de conversas: oculte nomes e dados de pacientes. -->
-<section class="band" aria-label="Feedbacks de clínicas atendidas">
-  <p class="band-label">Feedbacks</p>
-  <div class="marquee" data-marquee>
-    <div class="marquee-track">
-        <figure class="case-l">
-          <div class="frame"><div class="ph"><strong>Print do case 01</strong>Espaço para o print do resultado</div></div>
-          <figcaption class="case-cap"><span class="avatar">01</span><b>Título do case</b></figcaption>
-        </figure>
-        <figure class="case-l">
-          <div class="frame"><div class="ph"><strong>Print do case 02</strong>Espaço para o print do resultado</div></div>
-          <figcaption class="case-cap"><span class="avatar">02</span><b>Título do case</b></figcaption>
-        </figure>
-        <figure class="case-l">
-          <div class="frame"><div class="ph"><strong>Print do case 03</strong>Espaço para o print do resultado</div></div>
-          <figcaption class="case-cap"><span class="avatar">03</span><b>Título do case</b></figcaption>
-        </figure>
-        <figure class="case-l">
-          <div class="frame"><div class="ph"><strong>Print do case 04</strong>Espaço para o print do resultado</div></div>
-          <figcaption class="case-cap"><span class="avatar">04</span><b>Título do case</b></figcaption>
-        </figure>
-        <figure class="case-l">
-          <div class="frame"><div class="ph"><strong>Print do case 05</strong>Espaço para o print do resultado</div></div>
-          <figcaption class="case-cap"><span class="avatar">05</span><b>Título do case</b></figcaption>
-        </figure>
-        <figure class="case-l">
-          <div class="frame"><div class="ph"><strong>Print do case 06</strong>Espaço para o print do resultado</div></div>
-          <figcaption class="case-cap"><span class="avatar">06</span><b>Título do case</b></figcaption>
-        </figure>
-    </div>
+<!-- ================= FEEDBACKS: FAIXA DO TOPO (CARROSSEL) =================
+     Os prints NÃO ficam aqui: estão no array FEEDBACKS, no script "Feedbacks: faixa do topo"
+     no final do arquivo (imagem, alt, largura/altura e visible). Prints de conversas:
+     oculte nomes e dados de pacientes antes de usar. -->
+<section class="band" aria-labelledby="feedbacks-label">
+  <p class="band-label" id="feedbacks-label">Feedbacks</p>
+  <div class="rs rs--fb" id="feedbacks" role="region" aria-roledescription="carousel" aria-label="Feedbacks de clientes">
+    <button type="button" class="rs-arrow prev" aria-label="Ver feedback anterior"><svg class="ic" aria-hidden="true"><use href="#i-arrow-l"/></svg></button>
+    <div class="rs-view" tabindex="0" aria-label="Feedbacks de clientes. Use as setas do teclado para navegar."><div class="rs-track"></div></div>
+    <button type="button" class="rs-arrow next" aria-label="Ver próximo feedback"><svg class="ic" aria-hidden="true"><use href="#i-arrow-r"/></svg></button>
+    <div class="rs-dots" role="group" aria-label="Escolher feedback"></div>
   </div>
 </section>
 
@@ -585,7 +545,7 @@ fbq('track', 'PageView');
 </section>
 
 <!-- ================= RESULTADOS: CARROSSEL DE CASES =================
-     Os cards NÃO ficam aqui: estão no array CASES, no script "Resultados: carrossel dos cases"
+     Os cards NÃO ficam aqui: estão no array CASES, no script "Resultados: cards"
      no final do arquivo (imagem, título, resultado, alt e visible). Para trocar texto, imagem
      ou ativar/ocultar um card, edite só aquele array. -->
 <section class="section" aria-labelledby="resultados-titulo">
@@ -1015,84 +975,18 @@ fbq('track', 'PageView');
     });
   })();
 
-  /* ---------- Faixas de feedbacks em rolagem automática ---------- */
-  (function () {
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var SPEED = 45; /* px por segundo */
-    [].forEach.call(document.querySelectorAll('[data-marquee]'), function (box) {
-      var track = box.querySelector('.marquee-track');
-      var base = [].slice.call(track.children);
-      function clone(el) {
-        var c = el.cloneNode(true);
-        c.setAttribute('data-clone', ''); c.setAttribute('aria-hidden', 'true');
-        return c;
-      }
-      function build() {
-        [].forEach.call(track.querySelectorAll('[data-clone]'), function (c) { c.remove(); });
-        if (reduce) return;
-        var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-        var one = track.scrollWidth + gap;                 /* largura de um conjunto */
-        var reps = Math.max(1, Math.ceil(box.clientWidth / one));
-        var group = base.slice(), i;
-        for (i = 1; i < reps; i++) base.forEach(function (el) { var c = clone(el); track.appendChild(c); group.push(c); });
-        group.forEach(function (el) { track.appendChild(clone(el)); }); /* segunda metade, idêntica */
-        track.style.animationDuration = Math.max(20, (track.scrollWidth / 2) / SPEED) + 's';
-      }
-      build();
-      var timer, lastW = box.clientWidth;
-      window.addEventListener('resize', function () {
-        clearTimeout(timer);
-        timer = setTimeout(function () { if (box.clientWidth !== lastW) { lastW = box.clientWidth; build(); } }, 200);
-      });
-    });
-  })();
-
-  /* ---------- Resultados: carrossel dos cases ---------- */
-  (function () {
-    /* =================== CONFIGURAÇÃO DOS CARDS ===================
-       img     caminho da imagem SEM extensão. O código usa .webp e, de fallback, .png
-               (ex.: 'assets/cases/case-01' carrega case-01.webp ou case-01.png)
-       title   título do case
-       result  linha de resultado
-       alt     descrição da imagem para leitores de tela
-       visible false oculta o card (continua aqui, pronto para ativar)
-       art     números da ARTE que aparece quando não há imagem real (mantenha igual ao result).
-               kind 'funnel': value, unit, period  |  'invest': from, fromLabel, to, toLabel
-               kind 'growth': from, to, unit. Com a imagem real no lugar, a arte some sozinha. */
-    var CASES = [
-      { img: 'assets/cases/case-01', title: 'Prótese dentária',    result: '164 oportunidades em 30 dias',
-        alt: 'Relatório: 164 oportunidades de prótese dentária em 30 dias', visible: true,
-        art: { kind: 'funnel', value: '164', unit: 'oportunidades', period: 'em 30 dias' } },
-      { img: 'assets/cases/case-02', title: 'Implantes dentários', result: '152 oportunidades em 30 dias',
-        alt: 'Relatório: 152 oportunidades de implantes dentários em 30 dias', visible: true,
-        art: { kind: 'funnel', value: '152', unit: 'oportunidades', period: 'em 30 dias' } },
-      { img: 'assets/cases/case-03', title: 'Blefaroplastia',      result: '64 oportunidades em 30 dias',
-        alt: 'Relatório: 64 oportunidades de blefaroplastia em 30 dias', visible: true,
-        art: { kind: 'funnel', value: '64', unit: 'oportunidades', period: 'em 30 dias' } },
-      { img: 'assets/cases/case-04', title: 'Transplante capilar', result: '46 oportunidades em 30 dias',
-        alt: 'Relatório: 46 oportunidades de transplante capilar em 30 dias', visible: true,
-        art: { kind: 'funnel', value: '46', unit: 'oportunidades', period: 'em 30 dias' } },
-      /* PROVISÓRIOS: números ainda não confirmados. Troque visible para true quando tiver os reais. */
-      { img: 'assets/cases/case-05', title: 'Funil completo',      result: 'R$ 3 mil investidos, R$ 72 mil fechados',
-        alt: 'Relatório do funil completo: R$ 3 mil investidos e R$ 72 mil fechados', visible: false,
-        art: { kind: 'invest', from: 'R$ 3 mil', fromLabel: 'investidos', to: 'R$ 72 mil', toLabel: 'fechados' } },
-      { img: 'assets/cases/case-06', title: 'Clínica de estética', result: 'De 7 para 16 procedimentos por mês',
-        alt: 'Relatório: clínica de estética passou de 7 para 16 procedimentos por mês', visible: false,
-        art: { kind: 'growth', from: '7', to: '16', unit: 'procedimentos por mês' } }
-    ];
-    var IMG_W = 800, IMG_H = 1000;  /* proporção 4:5 (retrato); evita deslocamento de layout */
-    var LOOP_MIN = 4;               /* loop infinito só com 4+ cards visíveis */
-    var AUTOPLAY_MS = 6000;         /* tempo por card; pausa com mouse, foco ou toque */
-
-    var root = document.getElementById('results');
-    if (!root) return;
+  /* ---------- Carrossel (motor compartilhado: Feedbacks do topo e Resultados) ----------
+     Cards de largura igual, alturas livres. Cabendo todos na tela: fila centralizada, sem setas.
+     Senão: setas, arrastar com o mouse, swipe (scroll-snap), dots, teclado, e loop com 4+ cards. */
+  function Carousel(root, items, makeCard, opts) {
+    var LOOP_MIN = opts.loopMin || 4;      /* loop infinito só com 4+ cards visíveis */
+    var AUTOPLAY_MS = opts.autoplayMs || 6000;  /* tempo por card; pausa com mouse, foco ou toque */
     var view = root.querySelector('.rs-view');
     var track = root.querySelector('.rs-track');
     var btnPrev = root.querySelector('.rs-arrow.prev');
     var btnNext = root.querySelector('.rs-arrow.next');
     var dotsBox = root.querySelector('.rs-dots');
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var items = CASES.filter(function (c) { return c.visible; });
     var n = items.length;
     if (!n) { root.hidden = true; return; }
 
@@ -1100,111 +994,19 @@ fbq('track', 'PageView');
     var dragging = false, touching = false, hover = false, focused = false, inView = false;
     var lastAct = 0, idleTimer = 0, raf = 0, ioActive = null;
 
-    /* ---------- Arte dos cards (SVG gerado a partir de `art`) ---------- */
-    var artUid = 0;
-    function esc(t) { return String(t).replace(/[&<>"]/g, function (ch) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]; }); }
-    function fit(t, maxW, base) { return Math.min(base, Math.floor(maxW / (String(t).length * 0.62))); }
-
-    /* trapézio com cantos arredondados (contorno da mesma cor) */
-    function tier(cx, y, h, wTop, wBot, fillId, glow) {
-      var r = 4, pts = [
-        [cx - wTop / 2 + r, y + r], [cx + wTop / 2 - r, y + r],
-        [cx + wBot / 2 - r, y + h - r], [cx - wBot / 2 + r, y + h - r]
-      ].map(function (p) { return p[0] + ',' + p[1]; }).join(' ');
-      return '<polygon points="' + pts + '" fill="url(#' + fillId + ')" stroke="url(#' + fillId + ')" stroke-width="' + (r * 2) + '" stroke-linejoin="round"' + (glow ? ' filter="url(#' + glow + ')"' : '') + '/>';
-    }
-
-    function artSvg(c) {
-      var a = c.art;
-      if (!a) return null;
-      var u = 'a' + (++artUid), P = '', label = c.title + ': ' + c.result;
-      var defs = '<defs>' +
-        '<radialGradient id="' + u + 'g" cx="50%" cy="0%" r="75%"><stop offset="0" stop-color="#7c3aed" stop-opacity=".42"/><stop offset="1" stop-color="#7c3aed" stop-opacity="0"/></radialGradient>' +
-        '<pattern id="' + u + 'p" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="1.2" cy="1.2" r="1" fill="#a78bfa" fill-opacity=".14"/></pattern>' +
-        '<linearGradient id="' + u + 'n" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#d4c5fa"/></linearGradient>' +
-        '<linearGradient id="' + u + 't1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2175"/><stop offset="1" stop-color="#2c1a5c"/></linearGradient>' +
-        '<linearGradient id="' + u + 't2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6232c4"/><stop offset="1" stop-color="#4c25a0"/></linearGradient>' +
-        '<linearGradient id="' + u + 't3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#7c3aed"/></linearGradient>' +
-        '<filter id="' + u + 'b" x="-40%" y="-60%" width="180%" height="220%"><feGaussianBlur stdDeviation="9"/></filter>' +
-        '</defs>';
-      var bg = '<rect width="320" height="400" fill="#150e27"/><rect width="320" height="400" fill="url(#' + u + 'g)"/><rect width="320" height="400" fill="url(#' + u + 'p)"/>';
-
-      if (a.kind === 'funnel') {
-        var fs = fit(a.value, 250, 88);
-        P += '<text class="d" x="160" y="98" text-anchor="middle" font-size="' + fs + '" fill="url(#' + u + 'n)" letter-spacing="-2">' + esc(a.value) + '</text>';
-        P += '<text x="160" y="129" text-anchor="middle" font-size="21" font-weight="700" fill="#c4b5fd">' + esc(a.unit) + '</text>';
-        P += '<text x="160" y="153" text-anchor="middle" font-size="15" font-weight="600" fill="#9d90c0">' + esc(a.period) + '</text>';
-        /* brilho atrás do último estágio */
-        P += '<ellipse cx="160" cy="336" rx="70" ry="26" fill="#8b5cf6" opacity=".55" filter="url(#' + u + 'b)"/>';
-        P += tier(160, 178, 52, 290, 238, u + 't1');
-        P += tier(160, 244, 52, 228, 176, u + 't2');
-        P += tier(160, 310, 52, 166, 126, u + 't3');
-        [[178, 'Anúncios', '#c9bdf0'], [244, 'Contatos', '#ece6ff'], [310, 'Oportunidades', '#ffffff']].forEach(function (t) {
-          P += '<text x="160" y="' + (t[0] + 32) + '" text-anchor="middle" font-size="' + (t[1].length > 10 ? 15 : 17) + '" font-weight="800" fill="' + t[2] + '">' + t[1] + '</text>';
-        });
-        [230, 296].forEach(function (y) { P += '<polygon points="153,' + (y + 3) + ' 167,' + (y + 3) + ' 160,' + (y + 11) + '" fill="#a78bfa" opacity=".85"/>'; });
-      } else if (a.kind === 'invest') {
-        var f1 = fit(a.from, 220, 44), f2 = fit(a.to, 244, 44);
-        P += '<rect x="44" y="46" width="232" height="118" rx="22" fill="#211736" stroke="#3a2d57" stroke-width="1.5"/>';
-        P += '<text class="d" x="160" y="108" text-anchor="middle" font-size="' + f1 + '" fill="#ffffff">' + esc(a.from) + '</text>';
-        P += '<text x="160" y="140" text-anchor="middle" font-size="18" font-weight="700" fill="#9d90c0">' + esc(a.fromLabel) + '</text>';
-        P += '<circle cx="160" cy="196" r="17" fill="#2c1a5c" stroke="#6d4fd0" stroke-width="1.5"/><polygon points="152,191 168,191 160,203" fill="#c4b5fd"/>';
-        P += '<ellipse cx="160" cy="318" rx="100" ry="30" fill="#8b5cf6" opacity=".5" filter="url(#' + u + 'b)"/>';
-        P += '<rect x="24" y="226" width="272" height="132" rx="24" fill="url(#' + u + 't3)"/>';
-        P += '<text class="d" x="160" y="291" text-anchor="middle" font-size="' + f2 + '" fill="#ffffff">' + esc(a.to) + '</text>';
-        P += '<text x="160" y="326" text-anchor="middle" font-size="19" font-weight="800" fill="#ede4ff">' + esc(a.toLabel) + '</text>';
-      } else if (a.kind === 'growth') {
-        var v1 = Number(a.from), v2 = Number(a.to), max = 180;
-        var h1 = v2 > 0 ? Math.max(24, Math.round(max * v1 / v2)) : 24, base = 318;
-        P += '<ellipse cx="208" cy="' + base + '" rx="70" ry="22" fill="#8b5cf6" opacity=".5" filter="url(#' + u + 'b)"/>';
-        P += '<rect x="64" y="' + (base - h1) + '" width="84" height="' + h1 + '" rx="14" fill="url(#' + u + 't1)" stroke="#4b3a7e" stroke-width="1.5"/>';
-        P += '<rect x="172" y="' + (base - max) + '" width="84" height="' + max + '" rx="14" fill="url(#' + u + 't3)"/>';
-        P += '<text class="d" x="106" y="' + (base - h1 - 14) + '" text-anchor="middle" font-size="44" fill="#d4c5fa">' + esc(a.from) + '</text>';
-        P += '<text class="d" x="214" y="' + (base - max - 14) + '" text-anchor="middle" font-size="52" fill="#ffffff">' + esc(a.to) + '</text>';
-        P += '<line x1="40" y1="' + (base + 4) + '" x2="280" y2="' + (base + 4) + '" stroke="#3a2d57" stroke-width="2" stroke-linecap="round"/>';
-        P += '<text x="160" y="360" text-anchor="middle" font-size="18" font-weight="700" fill="#c4b5fd">' + esc(a.unit) + '</text>';
-      } else { return null; }
-
-      var wrap = document.createElement('div');
-      wrap.className = 'art';
-      wrap.innerHTML = '<svg viewBox="0 0 320 400" role="img" aria-label="' + esc(label) + '" focusable="false">' + defs + bg + P + '</svg>';
-      return wrap;
-    }
-
-    function makeCard(c, i, clone) {
-      var fig = document.createElement('figure');
-      fig.className = 'case-d';
-      if (clone) { fig.setAttribute('data-clone', ''); fig.setAttribute('aria-hidden', 'true'); fig.inert = true; }
-      else { fig.setAttribute('role', 'group'); fig.setAttribute('aria-roledescription', 'slide'); fig.setAttribute('aria-label', (i + 1) + ' de ' + n); }
-
-      var frame = document.createElement('div'); frame.className = 'frame';
-      var art = artSvg(c); if (art) frame.appendChild(art);   /* arte atrás da imagem real */
-      var pic = document.createElement('picture');
-      var src = document.createElement('source'); src.type = 'image/webp'; src.srcset = c.img + '.webp';
-      var img = new Image();
-      img.width = IMG_W; img.height = IMG_H; img.alt = clone ? '' : c.alt;
-      img.decoding = 'async'; img.draggable = false;
-      img.loading = (i === 0 && !clone) ? 'eager' : 'lazy';   /* lazy a partir do 2º card */
-      img.addEventListener('error', function () {
-        if (src.parentNode) { src.remove(); img.src = c.img + '.png'; }  /* sem .webp: tenta o .png */
-        else frame.classList.add('is-missing');
-      });
-      img.addEventListener('load', function () { frame.classList.add('has-img'); });  /* imagem real cobre a arte */
-      img.src = c.img + '.png';
-      pic.appendChild(src); pic.appendChild(img); frame.appendChild(pic);
-
-      var h = document.createElement('h3'); h.textContent = c.title;
-      var p = document.createElement('p'); p.textContent = c.result;
-      fig.appendChild(frame); fig.appendChild(h); fig.appendChild(p);
-      return fig;
-    }
-
     var real = items.map(function (c, i) { return makeCard(c, i, false); });
     real.forEach(function (el) { track.appendChild(el); });
 
     function behavior() { return reduce ? 'auto' : 'smooth'; }
-    function curK() { return Math.round(view.scrollLeft / step); }
     function clampLeft(x) { return Math.max(0, Math.min(x, maxScroll)); }
+    function curK() {
+      var x = view.scrollLeft;
+      if (loop || !overflow) return Math.round(x / step);
+      /* sem loop: o último ponto de parada é o fim da rolagem (nem sempre múltiplo do passo) */
+      var last = Math.ceil(maxScroll / step), best = 0, bd = Infinity, k, d;
+      for (k = 0; k <= last; k++) { d = Math.abs(x - clampLeft(k * step)); if (d < bd - 0.5) { bd = d; best = k; } }
+      return best;
+    }
     function goTo(k, smooth) {
       var x = k * step;
       if (!loop) x = clampLeft(x);
@@ -1271,6 +1073,7 @@ fbq('track', 'PageView');
       var perView = Math.max(1, Math.floor((viewW - 2 * pad + gap) / step));
       loop = overflow && n >= LOOP_MIN;
       root.classList.toggle('is-static', !overflow);
+      if (overflow) view.setAttribute('tabindex', '0'); else view.removeAttribute('tabindex');
       setClones();
       if (!overflow) {
         view.scrollLeft = 0; maxScroll = 0;
@@ -1390,6 +1193,194 @@ fbq('track', 'PageView');
     else window.addEventListener('resize', onResize);
     lastW = view.clientWidth;
     build();
+  }
+
+  /* ---------- Feedbacks: faixa do topo ---------- */
+  (function () {
+    /* =================== CONFIGURAÇÃO DOS PRINTS ===================
+       img     caminho SEM extensão. O código usa .webp e, de fallback, .png
+               (ex.: 'assets/feedbacks/feedback-01' carrega feedback-01.webp ou .png)
+       w, h    largura e altura reais da imagem em pixels (reserva o espaço, sem pulo de layout)
+       alt     descrição do print para leitores de tela
+       visible false oculta o print (continua aqui, pronto para ativar)               */
+    var FEEDBACKS = [
+      { img: 'assets/feedbacks/feedback-01', w: 900, h: 775, visible: true,
+        alt: 'Feedback de uma cliente no WhatsApp: "Passando para dar o feedback do último anúncio que vocês impulsionaram. Tive muita procura via DM do Instagram e agendamento de consultas."' },
+      { img: 'assets/feedbacks/feedback-02', w: 900, h: 979, visible: true,
+        alt: 'Feedback de uma cliente no WhatsApp, de 0% a 100%: leads entendem o serviço, 40%; podem ir até a clínica, 100%; têm condições financeiras, 100%; conversão de leads em pacientes, 50%.' },
+      { img: 'assets/feedbacks/feedback-03', w: 900, h: 1423, visible: true,
+        alt: 'Feedback de um cliente no WhatsApp, de 0% a 100%: leads entendem o serviço, 95%; podem ir até a clínica, 90%; têm condições financeiras, 85%; conversão de leads em pacientes, 98%. Motivo de não agendar: alguns não são de procedimentos realizados na clínica.' }
+    ];
+
+    var failed = 0;
+    function makeCard(c, i, clone) {
+      var fig = document.createElement('figure');
+      fig.className = 'case-l';
+      if (clone) { fig.setAttribute('data-clone', ''); fig.setAttribute('aria-hidden', 'true'); fig.inert = true; }
+      else { fig.setAttribute('role', 'group'); fig.setAttribute('aria-roledescription', 'slide'); fig.setAttribute('aria-label', (i + 1) + ' de ' + n); }
+
+      var frame = document.createElement('div'); frame.className = 'frame';
+      var pic = document.createElement('picture');
+      var src = document.createElement('source'); src.type = 'image/webp'; src.srcset = c.img + '.webp';
+      var img = new Image();
+      img.width = c.w; img.height = c.h; img.alt = clone ? '' : c.alt;
+      img.decoding = 'async'; img.draggable = false;
+      img.loading = (i === 0 && !clone) ? 'eager' : 'lazy';   /* lazy a partir do 2º print */
+      img.addEventListener('error', function () {
+        if (src.parentNode) { src.remove(); img.src = c.img + '.png'; return; }  /* sem .webp: tenta o .png */
+        fig.hidden = true;
+        failed++;
+        if (failed >= n) { var band = root.closest('section'); if (band) band.style.display = 'none'; }  /* nenhum print carregou: esconde a faixa */
+      });
+      img.src = c.img + '.png';
+      pic.appendChild(src); pic.appendChild(img); frame.appendChild(pic); fig.appendChild(frame);
+      return fig;
+    }
+
+    var items = FEEDBACKS.filter(function (c) { return c.visible; });
+    var n = items.length;
+    var root = document.getElementById('feedbacks');
+    if (root) Carousel(root, items, makeCard, {});
+  })();
+
+  /* ---------- Resultados: cards ---------- */
+  (function () {
+    /* =================== CONFIGURAÇÃO DOS CARDS ===================
+       img     caminho da imagem SEM extensão. O código usa .webp e, de fallback, .png
+               (ex.: 'assets/cases/case-01' carrega case-01.webp ou case-01.png)
+       title   título do case
+       result  linha de resultado
+       alt     descrição da imagem para leitores de tela
+       visible false oculta o card (continua aqui, pronto para ativar)
+       art     números da ARTE que aparece quando não há imagem real (mantenha igual ao result).
+               kind 'funnel': value, unit, period  |  'invest': from, fromLabel, to, toLabel
+               kind 'growth': from, to, unit. Com a imagem real no lugar, a arte some sozinha. */
+    var CASES = [
+      { img: 'assets/cases/case-01', title: 'Prótese dentária',    result: '164 oportunidades em 30 dias',
+        alt: 'Relatório: 164 oportunidades de prótese dentária em 30 dias', visible: true,
+        art: { kind: 'funnel', value: '164', unit: 'oportunidades', period: 'em 30 dias' } },
+      { img: 'assets/cases/case-02', title: 'Implantes dentários', result: '152 oportunidades em 30 dias',
+        alt: 'Relatório: 152 oportunidades de implantes dentários em 30 dias', visible: true,
+        art: { kind: 'funnel', value: '152', unit: 'oportunidades', period: 'em 30 dias' } },
+      { img: 'assets/cases/case-03', title: 'Blefaroplastia',      result: '64 oportunidades em 30 dias',
+        alt: 'Relatório: 64 oportunidades de blefaroplastia em 30 dias', visible: true,
+        art: { kind: 'funnel', value: '64', unit: 'oportunidades', period: 'em 30 dias' } },
+      { img: 'assets/cases/case-04', title: 'Transplante capilar', result: '46 oportunidades em 30 dias',
+        alt: 'Relatório: 46 oportunidades de transplante capilar em 30 dias', visible: true,
+        art: { kind: 'funnel', value: '46', unit: 'oportunidades', period: 'em 30 dias' } },
+      /* PROVISÓRIOS: números ainda não confirmados. Troque visible para true quando tiver os reais. */
+      { img: 'assets/cases/case-05', title: 'Funil completo',      result: 'R$ 3 mil investidos, R$ 72 mil fechados',
+        alt: 'Relatório do funil completo: R$ 3 mil investidos e R$ 72 mil fechados', visible: false,
+        art: { kind: 'invest', from: 'R$ 3 mil', fromLabel: 'investidos', to: 'R$ 72 mil', toLabel: 'fechados' } },
+      { img: 'assets/cases/case-06', title: 'Clínica de estética', result: 'De 7 para 16 procedimentos por mês',
+        alt: 'Relatório: clínica de estética passou de 7 para 16 procedimentos por mês', visible: false,
+        art: { kind: 'growth', from: '7', to: '16', unit: 'procedimentos por mês' } }
+    ];
+    var IMG_W = 800, IMG_H = 1000;  /* proporção 4:5 (retrato); evita deslocamento de layout */
+    var items = CASES.filter(function (c) { return c.visible; });
+    var n = items.length;
+
+    /* ---------- Arte dos cards (SVG gerado a partir de `art`) ---------- */
+    var artUid = 0;
+    function esc(t) { return String(t).replace(/[&<>"]/g, function (ch) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]; }); }
+    function fit(t, maxW, base) { return Math.min(base, Math.floor(maxW / (String(t).length * 0.62))); }
+
+    /* trapézio com cantos arredondados (contorno da mesma cor) */
+    function tier(cx, y, h, wTop, wBot, fillId, glow) {
+      var r = 4, pts = [
+        [cx - wTop / 2 + r, y + r], [cx + wTop / 2 - r, y + r],
+        [cx + wBot / 2 - r, y + h - r], [cx - wBot / 2 + r, y + h - r]
+      ].map(function (p) { return p[0] + ',' + p[1]; }).join(' ');
+      return '<polygon points="' + pts + '" fill="url(#' + fillId + ')" stroke="url(#' + fillId + ')" stroke-width="' + (r * 2) + '" stroke-linejoin="round"' + (glow ? ' filter="url(#' + glow + ')"' : '') + '/>';
+    }
+
+    function artSvg(c) {
+      var a = c.art;
+      if (!a) return null;
+      var u = 'a' + (++artUid), P = '', label = c.title + ': ' + c.result;
+      var defs = '<defs>' +
+        '<radialGradient id="' + u + 'g" cx="50%" cy="0%" r="75%"><stop offset="0" stop-color="#7c3aed" stop-opacity=".42"/><stop offset="1" stop-color="#7c3aed" stop-opacity="0"/></radialGradient>' +
+        '<pattern id="' + u + 'p" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="1.2" cy="1.2" r="1" fill="#a78bfa" fill-opacity=".14"/></pattern>' +
+        '<linearGradient id="' + u + 'n" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#d4c5fa"/></linearGradient>' +
+        '<linearGradient id="' + u + 't1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2175"/><stop offset="1" stop-color="#2c1a5c"/></linearGradient>' +
+        '<linearGradient id="' + u + 't2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6232c4"/><stop offset="1" stop-color="#4c25a0"/></linearGradient>' +
+        '<linearGradient id="' + u + 't3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#7c3aed"/></linearGradient>' +
+        '<filter id="' + u + 'b" x="-40%" y="-60%" width="180%" height="220%"><feGaussianBlur stdDeviation="9"/></filter>' +
+        '</defs>';
+      var bg = '<rect width="320" height="400" fill="#150e27"/><rect width="320" height="400" fill="url(#' + u + 'g)"/><rect width="320" height="400" fill="url(#' + u + 'p)"/>';
+
+      if (a.kind === 'funnel') {
+        var fs = fit(a.value, 250, 88);
+        P += '<text class="d" x="160" y="98" text-anchor="middle" font-size="' + fs + '" fill="url(#' + u + 'n)" letter-spacing="-2">' + esc(a.value) + '</text>';
+        P += '<text x="160" y="129" text-anchor="middle" font-size="21" font-weight="700" fill="#c4b5fd">' + esc(a.unit) + '</text>';
+        P += '<text x="160" y="153" text-anchor="middle" font-size="15" font-weight="600" fill="#9d90c0">' + esc(a.period) + '</text>';
+        /* brilho atrás do último estágio */
+        P += '<ellipse cx="160" cy="336" rx="70" ry="26" fill="#8b5cf6" opacity=".55" filter="url(#' + u + 'b)"/>';
+        P += tier(160, 178, 52, 290, 238, u + 't1');
+        P += tier(160, 244, 52, 228, 176, u + 't2');
+        P += tier(160, 310, 52, 166, 126, u + 't3');
+        [[178, 'Anúncios', '#c9bdf0'], [244, 'Contatos', '#ece6ff'], [310, 'Oportunidades', '#ffffff']].forEach(function (t) {
+          P += '<text x="160" y="' + (t[0] + 32) + '" text-anchor="middle" font-size="' + (t[1].length > 10 ? 15 : 17) + '" font-weight="800" fill="' + t[2] + '">' + t[1] + '</text>';
+        });
+        [230, 296].forEach(function (y) { P += '<polygon points="153,' + (y + 3) + ' 167,' + (y + 3) + ' 160,' + (y + 11) + '" fill="#a78bfa" opacity=".85"/>'; });
+      } else if (a.kind === 'invest') {
+        var f1 = fit(a.from, 220, 44), f2 = fit(a.to, 244, 44);
+        P += '<rect x="44" y="46" width="232" height="118" rx="22" fill="#211736" stroke="#3a2d57" stroke-width="1.5"/>';
+        P += '<text class="d" x="160" y="108" text-anchor="middle" font-size="' + f1 + '" fill="#ffffff">' + esc(a.from) + '</text>';
+        P += '<text x="160" y="140" text-anchor="middle" font-size="18" font-weight="700" fill="#9d90c0">' + esc(a.fromLabel) + '</text>';
+        P += '<circle cx="160" cy="196" r="17" fill="#2c1a5c" stroke="#6d4fd0" stroke-width="1.5"/><polygon points="152,191 168,191 160,203" fill="#c4b5fd"/>';
+        P += '<ellipse cx="160" cy="318" rx="100" ry="30" fill="#8b5cf6" opacity=".5" filter="url(#' + u + 'b)"/>';
+        P += '<rect x="24" y="226" width="272" height="132" rx="24" fill="url(#' + u + 't3)"/>';
+        P += '<text class="d" x="160" y="291" text-anchor="middle" font-size="' + f2 + '" fill="#ffffff">' + esc(a.to) + '</text>';
+        P += '<text x="160" y="326" text-anchor="middle" font-size="19" font-weight="800" fill="#ede4ff">' + esc(a.toLabel) + '</text>';
+      } else if (a.kind === 'growth') {
+        var v1 = Number(a.from), v2 = Number(a.to), max = 180;
+        var h1 = v2 > 0 ? Math.max(24, Math.round(max * v1 / v2)) : 24, base = 318;
+        P += '<ellipse cx="208" cy="' + base + '" rx="70" ry="22" fill="#8b5cf6" opacity=".5" filter="url(#' + u + 'b)"/>';
+        P += '<rect x="64" y="' + (base - h1) + '" width="84" height="' + h1 + '" rx="14" fill="url(#' + u + 't1)" stroke="#4b3a7e" stroke-width="1.5"/>';
+        P += '<rect x="172" y="' + (base - max) + '" width="84" height="' + max + '" rx="14" fill="url(#' + u + 't3)"/>';
+        P += '<text class="d" x="106" y="' + (base - h1 - 14) + '" text-anchor="middle" font-size="44" fill="#d4c5fa">' + esc(a.from) + '</text>';
+        P += '<text class="d" x="214" y="' + (base - max - 14) + '" text-anchor="middle" font-size="52" fill="#ffffff">' + esc(a.to) + '</text>';
+        P += '<line x1="40" y1="' + (base + 4) + '" x2="280" y2="' + (base + 4) + '" stroke="#3a2d57" stroke-width="2" stroke-linecap="round"/>';
+        P += '<text x="160" y="360" text-anchor="middle" font-size="18" font-weight="700" fill="#c4b5fd">' + esc(a.unit) + '</text>';
+      } else { return null; }
+
+      var wrap = document.createElement('div');
+      wrap.className = 'art';
+      wrap.innerHTML = '<svg viewBox="0 0 320 400" role="img" aria-label="' + esc(label) + '" focusable="false">' + defs + bg + P + '</svg>';
+      return wrap;
+    }
+
+    function makeCard(c, i, clone) {
+      var fig = document.createElement('figure');
+      fig.className = 'case-d';
+      if (clone) { fig.setAttribute('data-clone', ''); fig.setAttribute('aria-hidden', 'true'); fig.inert = true; }
+      else { fig.setAttribute('role', 'group'); fig.setAttribute('aria-roledescription', 'slide'); fig.setAttribute('aria-label', (i + 1) + ' de ' + n); }
+
+      var frame = document.createElement('div'); frame.className = 'frame';
+      var art = artSvg(c); if (art) frame.appendChild(art);   /* arte atrás da imagem real */
+      var pic = document.createElement('picture');
+      var src = document.createElement('source'); src.type = 'image/webp'; src.srcset = c.img + '.webp';
+      var img = new Image();
+      img.width = IMG_W; img.height = IMG_H; img.alt = clone ? '' : c.alt;
+      img.decoding = 'async'; img.draggable = false;
+      img.loading = (i === 0 && !clone) ? 'eager' : 'lazy';   /* lazy a partir do 2º card */
+      img.addEventListener('error', function () {
+        if (src.parentNode) { src.remove(); img.src = c.img + '.png'; }  /* sem .webp: tenta o .png */
+        else frame.classList.add('is-missing');
+      });
+      img.addEventListener('load', function () { frame.classList.add('has-img'); });  /* imagem real cobre a arte */
+      img.src = c.img + '.png';
+      pic.appendChild(src); pic.appendChild(img); frame.appendChild(pic);
+
+      var h = document.createElement('h3'); h.textContent = c.title;
+      var p = document.createElement('p'); p.textContent = c.result;
+      fig.appendChild(frame); fig.appendChild(h); fig.appendChild(p);
+      return fig;
+    }
+
+    var root = document.getElementById('results');
+    if (root) Carousel(root, items, makeCard, {});
   })();
 </script>
 
