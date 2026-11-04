@@ -708,7 +708,7 @@ fbq('track', 'PageView');
         <p class="dlg-sub">Último passo. Nossa equipe entra em contato em breve.</p>
         <div class="note-box">
           <small>Suas informações</small>
-          <p>Seus dados ficam apenas com nosso time. <b>Não compartilhamos com terceiros.</b> Vamos usar para organizar o seu diagnóstico e entrar em contato pelo WhatsApp.</p>
+          <p>Usamos seus dados para organizar o seu diagnóstico e entrar em contato pelo WhatsApp. <b>Não vendemos suas informações.</b> Para melhorar nossos anúncios, enviamos à Meta (Facebook e Instagram) a confirmação do seu cadastro, com e-mail e telefone criptografados.</p>
         </div>
         <label class="q" for="{{u}}-nome">Nome completo <i>*</i></label>
         <input class="inp" id="{{u}}-nome" name="nome" type="text" autocomplete="name" placeholder="Seu nome">
@@ -767,6 +767,12 @@ fbq('track', 'PageView');
     var forms = [], seq = 0, submitted = false, lastTrigger = null, exitMode = false;
 
     function digits(v) { return v.replace(/\D/g, ''); }
+    function getCookie(n) {
+      try {
+        var m = document.cookie.match(new RegExp('(?:^|; )' + n + '=([^;]*)'));
+        return m ? decodeURIComponent(m[1]) : null;
+      } catch (err) { return null; }
+    }
 
     function LeadForm(mount, kind) {
       var u = 'f' + (++seq);
@@ -879,6 +885,10 @@ fbq('track', 'PageView');
         var fatEl = form.querySelector('input[name="fat"]:checked');
         var mql = !!fatEl && fatEl.getAttribute('data-mql') === '1';
         var local = kind === 'inline' ? 'primeira seção' : (exitMode ? 'pop-up de saída' : 'pop-up (botão)');
+        /* Código único deste envio. Vai para o servidor (que manda o Lead à Meta) e também para o pixel de
+           /obrigado/ (via sessionStorage): a Meta reconhece os dois como o MESMO lead e conta uma vez só. */
+        var eventId = 'lead_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+        var testCode = params.get('test_event_code'); /* só para testar no Gerenciador de Eventos da Meta */
         var payload = {
           nome_completo: nome,
           email: form.elements.email.value.trim(),
@@ -894,7 +904,15 @@ fbq('track', 'PageView');
           utm_source: params.get('utm_source'),
           utm_campaign: params.get('utm_campaign'),
           utm_medium: params.get('utm_medium'),
-          fbclid: params.get('fbclid')
+          fbclid: params.get('fbclid'),
+          /* sinais para a Conversions API (Meta) */
+          faturamento: fatEl.value,
+          mql: mql,
+          event_id: eventId,
+          fbc: getCookie('_fbc'),
+          fbp: getCookie('_fbp'),
+          event_url: window.location.href.split('#')[0],
+          test_event_code: /^[A-Za-z0-9_-]{3,40}$/.test(testCode || '') ? testCode : null
         };
 
         sending = true;
@@ -917,7 +935,7 @@ fbq('track', 'PageView');
                Este aviso (1 por envio) é o que autoriza o Lead lá, uma única vez. */
             try {
               sessionStorage.setItem('sx_lead', JSON.stringify({
-                id: 'lead_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8),
+                id: eventId,
                 mql: mql, esp: especialidade, fat: fatEl.value, fired: false
               }));
             } catch (err) {}

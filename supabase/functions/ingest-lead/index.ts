@@ -9,7 +9,7 @@ const supabase = createClient(
 /* Funil onde os leads da LP entram, sempre na etapa de menor ordem ("Novo Lead").
    O CRM tem VÁRIOS funis e cada um tem a sua etapa 1, então o funil é escolhido pelo id
    (assim renomear o funil no CRM não quebra o envio). */
-const FUNIL_CAPTACAO_ID = "9d0d73f6-2459-4ff4-90ad-9d2d51a693f6"; // Captação Odontológica (Tráfego Pago)
+const FUNIL_CAPTACAO_ID = "fc50e0bd-eb19-4874-bab0-3273c95fd017"; // Captação Starnex Med (Tráfego Pago)
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -47,6 +47,29 @@ async function etapaInicial(): Promise<string | null> {
     .order("ordem", { ascending: true })
     .limit(1);
   return qualquer.data && qualquer.data.length ? qualquer.data[0].id : null;
+}
+
+/* Sinais para a Meta (Conversions API). Roda DEPOIS de o lead estar gravado e responder ao visitante,
+   e qualquer falha aqui é só registrada: nunca afeta o lead nem a resposta do formulário. */
+async function registrarMeta(req: Request, body: Record<string, unknown>, leadId: string): Promise<void> {
+  const fbclid = txt(body.fbclid, 500);
+  const fbc = txt(body.fbc, 300) ?? (fbclid && fbclid.length <= 250 ? `fb.1.${Date.now()}.${fbclid}` : null);
+  const fwd = req.headers.get("x-forwarded-for");
+  const ip = req.headers.get("cf-connecting-ip") ?? (fwd ? fwd.split(",")[0].trim() : null);
+
+  const { data, error } = await supabase.rpc("meta_registrar_lead", {
+    p_lead_id: leadId,
+    p_mql: body.mql === true, /* decidido pela LP: faixas marcadas com data-mql */
+    p_event_id: txt(body.event_id, 80),
+    p_fbc: fbc,
+    p_fbp: txt(body.fbp, 300),
+    p_ip: ip,
+    p_ua: txt(req.headers.get("user-agent"), 500),
+    p_url: txt(body.event_url, 500),
+    p_faturamento: txt(body.faturamento, 200),
+    p_test_event_code: txt(body.test_event_code, 40),
+  });
+  if (error || data === false) console.error("ingest-lead: meta_registrar_lead falhou", error?.message ?? "retornou false");
 }
 
 Deno.serve(async (req: Request) => {
@@ -98,6 +121,18 @@ Deno.serve(async (req: Request) => {
     if (leadError) {
       console.error("ingest-lead: erro ao gravar o lead", leadError.message);
       return json({ error: leadError.message }, 500);
+    }
+
+    /* Meta: em segundo plano, depois de responder. EdgeRuntime.waitUntil mantém a tarefa viva até acabar. */
+    try {
+      const tarefa = registrarMeta(req, body, lead.id).catch((e) =>
+        console.error("ingest-lead: erro ao registrar sinais da Meta", String(e))
+      );
+      // deno-lint-ignore no-explicit-any
+      const er = (globalThis as any).EdgeRuntime;
+      if (er && typeof er.waitUntil === "function") er.waitUntil(tarefa);
+    } catch (e) {
+      console.error("ingest-lead: erro ao agendar sinais da Meta", String(e));
     }
 
     return json({ success: true, lead_id: lead.id });
