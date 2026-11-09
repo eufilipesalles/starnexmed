@@ -86,11 +86,11 @@ Deno.serve(async (req: Request) => {
     }
 
     const nome_completo = txt(body.nome_completo, 200);
-    const email = txt(body.email, 200);
+    const email = txt(body.email, 200); /* opcional: o formulário atual da LP não pede e-mail */
     const whatsapp = txt(body.whatsapp, 40);
 
-    if (!nome_completo || !email || !whatsapp) {
-      return json({ error: "Campos obrigatorios faltando: nome_completo, email, whatsapp" }, 400);
+    if (!nome_completo || !whatsapp) {
+      return json({ error: "Campos obrigatorios faltando: nome_completo, whatsapp" }, 400);
     }
 
     const estagio_id = await etapaInicial();

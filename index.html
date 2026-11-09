@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#ffffff">
-<title>Starnex Med | Pacientes particulares todo mês para clínicas médicas</title>
-<meta name="description" content="Tráfego pago, LP de alta conversão, Google, CRM e playbook comercial em um único sistema de aquisição para clínicas médicas. Diagnóstico gratuito de 30 minutos.">
+<title>Starnex Med | Mais agendamentos todo mês para clínicas de estética</title>
+<meta name="description" content="Tráfego pago, LP de alta conversão, Google, CRM e playbook comercial em um único sistema de aquisição para clínicas de estética. Diagnóstico gratuito de 30 minutos.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap" rel="stylesheet">
@@ -112,6 +112,8 @@ fbq('track', 'PageView');
   .hero-sub { margin: 22px auto 0; max-width: 48ch; text-wrap: balance; color: var(--mute); font-size: clamp(16.5px, 1.9vw, 19px); }
   .hero-sub strong { color: var(--purple); font-weight: 800; }
   .hero-form { margin: 34px auto 0; max-width: 680px; text-align: left; }
+  .hero-for { margin: 30px 0 0; }
+  .hero-for + h1 { margin-top: 18px; }
 
   /* ---------- Mitos ---------- */
   .myth-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-top: 56px; }
@@ -377,12 +379,20 @@ fbq('track', 'PageView');
     .opts.two { grid-template-columns: 1fr; }
     .nav-btn { height: 50px; padding: 0 16px; gap: 8px; font-size: 12px; letter-spacing: .06em; }
     .nav-btn.next { flex: 1 1 auto; min-width: 0; }
+    /* celular: "Voltar" vira só a seta (o texto continua para leitores de tela) para o botão principal caber inteiro */
+    .nav-btn.back { padding: 0 16px; }
+    .nav-btn.back span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
     .modal { padding: 0; align-items: flex-end; }
     .modal-box { max-width: none; max-height: 94dvh; border-radius: 24px 24px 0 0; }
     .modal-box .dlg-foot { padding-bottom: calc(14px + env(safe-area-inset-bottom)); }
     .dlg-x { right: 12px; top: 12px; }
     .exit-note { padding-left: 20px; }
     .plans-visual { aspect-ratio: 1 / 1; }
+  }
+  @media (max-width: 340px) {
+    .dlg-foot { padding-left: 14px; padding-right: 14px; }
+    .nav-btn { padding: 0 12px; font-size: 11px; letter-spacing: .02em; }
+    .nav-btn.back { padding: 0 14px; }
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -413,7 +423,8 @@ fbq('track', 'PageView');
     <div class="brand" aria-label="Starnex Med"><span>Starnex</span><span class="brand-tag">Med</span></div>
 
     <!-- EDITAR: faixa de agendamentos e prazo da headline (confirmar com dados reais antes de publicar) -->
-    <h1>Tenha <span class="hl">de 10 a 30 novos agendamentos</span> de pacientes particulares por mês, <span class="nb"><span class="u">em até 60 dias</span>,</span> sem depender de indicação.</h1>
+    <p class="hero-for"><span class="pill">Para donos(as) de clínicas de estética</span></p>
+    <h1>Tenha <span class="hl">de 10 a 30 novos agendamentos</span> de procedimentos estéticos por mês, <span class="nb"><span class="u">em até 60 dias</span>,</span> sem depender de indicação.</h1>
 
     <p class="hero-sub">Preencha abaixo e agende seu <strong>diagnóstico estratégico de 30 minutos</strong>.</p>
 
@@ -425,8 +436,8 @@ fbq('track', 'PageView');
 
 <!-- ================= FEEDBACKS: FAIXA DO TOPO (CARROSSEL) =================
      Os prints NÃO ficam aqui: estão no array FEEDBACKS, no script "Feedbacks: faixa do topo"
-     no final do arquivo (imagem, alt, largura/altura e visible). Prints de conversas:
-     oculte nomes e dados de pacientes antes de usar. -->
+     no final do arquivo (imagem, alt, largura/altura e visible). Só use prints de clínicas de
+     ESTÉTICA e oculte nomes e dados de clientes. Sem nenhum print visível, a faixa some sozinha. -->
 <section class="band" aria-labelledby="feedbacks-label">
   <p class="band-label" id="feedbacks-label">Feedbacks</p>
   <div class="rs rs--fb" id="feedbacks" role="region" aria-roledescription="carousel" aria-label="Feedbacks de clientes">
@@ -449,7 +460,7 @@ fbq('track', 'PageView');
       <article class="myth">
         <span class="pill">Mito #1</span>
         <q>Se eu investir mais em anúncios, a agenda enche.</q>
-        <p><b>Falso.</b> Anúncio traz contato. Sem processo para atender e acompanhar, o contato esfria antes de virar consulta.</p>
+        <p><b>Falso.</b> Anúncio traz contato. Sem processo para atender e acompanhar, o contato esfria antes de virar agendamento.</p>
       </article>
       <article class="myth">
         <span class="pill">Mito #2</span>
@@ -458,13 +469,13 @@ fbq('track', 'PageView');
       </article>
       <article class="myth">
         <span class="pill">Mito #3</span>
-        <q>Ter site e Instagram já é ter um canal de aquisição.</q>
-        <p><b>Falso.</b> Presença digital mostra a clínica. Canal de aquisição leva o paciente da busca até o agendamento.</p>
+        <q>Ter um Instagram bonito já é ter um canal de aquisição.</q>
+        <p><b>Falso.</b> O Instagram mostra o trabalho da clínica. Canal de aquisição leva a pessoa do anúncio até o agendamento do procedimento.</p>
       </article>
       <article class="myth">
         <span class="pill">Mito #4</span>
         <q>Qualquer agência de marketing resolve.</q>
-        <p><b>Falso.</b> Clínica médica tem jornada, comunicação e regras próprias. Agência generalista aplica a mesma receita em todo tipo de negócio.</p>
+        <p><b>Falso.</b> Clínica de estética tem jornada de decisão, comunicação e procedimentos próprios. Agência generalista aplica a mesma receita em todo tipo de negócio.</p>
       </article>
     </div>
   </div>
@@ -474,8 +485,8 @@ fbq('track', 'PageView');
 <section class="section about" id="quem-somos">
   <div class="wrap">
     <span class="pill">Quem somos</span>
-    <h2>Uma assessoria de aquisição feita só para clínicas médicas.</h2>
-    <p>A <strong>Starnex</strong> nasceu em Uruguaiana, no Rio Grande do Sul, para resolver um problema que vemos todo dia: médicos excelentes que dependem de indicação porque ninguém estruturou o caminho entre o anúncio e a consulta.</p>
+    <h2>Uma assessoria de aquisição pensada para clínicas de estética.</h2>
+    <p>A <strong>Starnex</strong> nasceu em Uruguaiana, no Rio Grande do Sul, para resolver um problema que vemos todo dia: clínicas com trabalho excelente que dependem de indicação porque ninguém estruturou o caminho entre o anúncio e o agendamento.</p>
     <p>Por isso reunimos tráfego, página, Google, CRM e processo comercial em um único método, o <strong>Método Nex+</strong>, e acompanhamos cada número de perto.</p>
   </div>
 </section>
@@ -486,29 +497,29 @@ fbq('track', 'PageView');
     <div class="shead">
       <span class="pill">O que entregamos na prática</span>
       <h2>As <span class="hl">6 engrenagens</span> do Método Nex+ que estruturam a aquisição da sua clínica.</h2>
-      <p>Cada área isolada melhora uma parte. <b>Conectadas, elas atraem, convertem e fecham pacientes particulares.</b></p>
+      <p>Cada área isolada melhora uma parte. <b>Conectadas, elas atraem, convertem e fecham novos clientes.</b></p>
     </div>
 
     <div class="gear-list">
       <article class="gear">
         <span class="gear-n">01</span>
         <div>
-          <h3>Aquisição previsível de pacientes <span class="tag">Atrair</span></h3>
-          <p>Tráfego pago no <b>Meta Ads e Google Ads</b> para atrair pacientes particulares todo mês.</p>
+          <h3>Aquisição previsível de clientes <span class="tag">Atrair</span></h3>
+          <p>Tráfego pago no <b>Meta Ads e Google Ads</b> para atrair clientes para os seus procedimentos todo mês.</p>
         </div>
       </article>
       <article class="gear">
         <span class="gear-n">02</span>
         <div>
-          <h3>Criativos que atraem o paciente <span class="tag">Atrair</span></h3>
-          <p>Vídeos e peças editados para posicionar o doutor como <b>referência</b> e gerar agendamentos.</p>
+          <h3>Criativos que geram agendamentos <span class="tag">Atrair</span></h3>
+          <p>Vídeos e peças editados para posicionar a clínica como <b>referência</b> e gerar agendamentos.</p>
         </div>
       </article>
       <article class="gear">
         <span class="gear-n">03</span>
         <div>
           <h3>Presença local no Google <span class="tag">Atrair</span></h3>
-          <p>Perfil otimizado para a clínica aparecer quando o paciente busca a sua <b>especialidade</b>.</p>
+          <p>Perfil otimizado para a clínica aparecer quando alguém busca <b>procedimentos estéticos</b> na sua cidade.</p>
         </div>
       </article>
       <article class="gear">
@@ -521,51 +532,26 @@ fbq('track', 'PageView');
       <article class="gear">
         <span class="gear-n">05</span>
         <div>
-          <h3>CRM com funil de pacientes <span class="tag">Fechar</span></h3>
+          <h3>CRM com funil de clientes <span class="tag">Fechar</span></h3>
           <p>Cada contato registrado por etapa, do primeiro contato ao <b>fechamento</b>.</p>
         </div>
       </article>
       <article class="gear">
         <span class="gear-n">06</span>
         <div>
-          <h3>Comercial que leva o paciente à consulta <span class="tag">Fechar</span></h3>
+          <h3>Comercial que leva o contato ao procedimento <span class="tag">Fechar</span></h3>
           <p>Playbook com roteiro de atendimento, <b>follow-up</b> e respostas às objeções.</p>
         </div>
       </article>
 
       <div class="gear-final">
         <div>
-          <h3>Tudo conectado, do primeiro anúncio à consulta agendada.</h3>
+          <h3>Tudo conectado, do primeiro anúncio ao procedimento agendado.</h3>
           <p>No diagnóstico, mostramos como aplicar o Método Nex+ na sua clínica.</p>
         </div>
         <a class="btn" href="#" data-cta="metodo" data-open>Agendar Diagnóstico</a>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ================= RESULTADOS: CARROSSEL DE CASES =================
-     Os cards NÃO ficam aqui: estão no array CASES, no script "Resultados: cards"
-     no final do arquivo (imagem, título, resultado, alt e visible). Para trocar texto, imagem
-     ou ativar/ocultar um card, edite só aquele array. -->
-<section class="section" aria-labelledby="resultados-titulo">
-  <div class="wrap">
-    <div class="shead">
-      <span class="pill">Resultados</span>
-      <h2 id="resultados-titulo">Resultados que <span class="hl">comprovam</span> o processo</h2>
-    </div>
-  </div>
-
-  <div class="rs" id="results" role="region" aria-roledescription="carousel" aria-label="Resultados de clientes">
-    <button type="button" class="rs-arrow prev" aria-label="Ver resultado anterior"><svg class="ic" aria-hidden="true"><use href="#i-arrow-l"/></svg></button>
-    <div class="rs-view" tabindex="0" aria-label="Resultados de clientes. Use as setas do teclado para navegar."><div class="rs-track"></div></div>
-    <button type="button" class="rs-arrow next" aria-label="Ver próximo resultado"><svg class="ic" aria-hidden="true"><use href="#i-arrow-r"/></svg></button>
-    <div class="rs-dots" role="group" aria-label="Escolher resultado"></div>
-  </div>
-
-  <div class="wrap">
-    <p class="rs-note">Resultados de clientes reais. Nomes das clínicas preservados a pedido dos clientes. Os resultados variam conforme especialidade, oferta, região e investimento em mídia.</p>
-    <div class="cases-cta"><a class="btn" href="#" data-cta="cases" data-open>Quero ver o estudo de caso</a></div>
   </div>
 </section>
 
@@ -577,11 +563,11 @@ fbq('track', 'PageView');
     <div class="faq-list">
       <details name="faq">
         <summary>O diagnóstico realmente é gratuito?<svg class="ic"><use href="#i-plus"/></svg></summary>
-        <p>Sim. São 30 minutos online, sem custo e sem compromisso. Analisamos como a sua clínica capta e atende pacientes hoje e apontamos onde estão as oportunidades.</p>
+        <p>Sim. São 30 minutos online, sem custo e sem compromisso. Analisamos como a sua clínica capta e atende clientes hoje e apontamos onde estão as oportunidades.</p>
       </details>
       <details name="faq">
-        <summary>A Starnex Med atende qual tipo de clínica?<svg class="ic"><use href="#i-plus"/></svg></summary>
-        <p>A Starnex Med é voltada a clínicas e consultórios médicos. No diagnóstico entendemos a especialidade, o procedimento com maior demanda e a região de atuação para adaptar a estratégia ao seu caso.</p>
+        <summary>Para quem é a Starnex Med?<svg class="ic"><use href="#i-plus"/></svg></summary>
+        <p>A Starnex Med é voltada a donos(as) de clínicas de estética. No diagnóstico entendemos os procedimentos com maior demanda, o ticket médio e a região de atuação para adaptar a estratégia ao seu caso.</p>
       </details>
       <details name="faq">
         <summary>O investimento em anúncios está incluso?<svg class="ic"><use href="#i-plus"/></svg></summary>
@@ -596,12 +582,12 @@ fbq('track', 'PageView');
         <p>Todo contato que chega das campanhas e da LP entra no CRM, organizado por etapas, como novo contato, em atendimento e agendado. O playbook comercial orienta a equipe sobre como conduzir cada etapa até o agendamento.</p>
       </details>
       <details name="faq">
-        <summary>As campanhas respeitam as normas de publicidade médica?<svg class="ic"><use href="#i-plus"/></svg></summary>
-        <p>A publicidade médica tem regras próprias do CFM, e elas entram no planejamento das campanhas e dos criativos desde o início.</p>
+        <summary>As campanhas respeitam as regras de publicidade da área da saúde?<svg class="ic"><use href="#i-plus"/></svg></summary>
+        <p>A publicidade na área da saúde tem regras próprias dos conselhos profissionais (como CFM e CRBM) e das plataformas de anúncio. Elas entram no planejamento das campanhas e dos criativos desde o início.</p>
       </details>
       <details name="faq">
-        <summary>Em quanto tempo começo a receber pacientes?<svg class="ic"><use href="#i-plus"/></svg></summary>
-        <p>Depende da especialidade, da região, da oferta e da verba de mídia. Não prometemos um prazo único: no diagnóstico apresentamos uma expectativa realista para o seu caso.</p>
+        <summary>Em quanto tempo começo a receber clientes?<svg class="ic"><use href="#i-plus"/></svg></summary>
+        <p>Depende dos procedimentos, da região, da oferta e da verba de mídia. Não prometemos um prazo único: no diagnóstico apresentamos uma expectativa realista para o seu caso.</p>
       </details>
     </div>
   </div>
@@ -658,7 +644,7 @@ fbq('track', 'PageView');
 <footer>
   <div class="wrap">
     <div class="brand" aria-label="Starnex Med"><span>Starnex</span><span class="brand-tag">Med</span></div>
-    <p>Hub de soluções para clínicas. © 2026 Starnex. Todos os direitos reservados.</p>
+    <p>Hub de soluções para clínicas de estética. © 2026 Starnex. Todos os direitos reservados.</p>
   </div>
 </footer>
 
@@ -675,22 +661,28 @@ fbq('track', 'PageView');
     <div class="dlg-body">
 
       <section class="pane" data-step="1">
-        <h2 class="dlg-title" tabindex="-1">Conta um pouco sobre sua clínica.</h2>
-        <p class="dlg-sub">Começamos pelo essencial para direcionar o diagnóstico.</p>
-        <span class="q" id="{{u}}-q-esp">Especialidade <i>*</i></span>
-        <div class="chips" role="radiogroup" aria-labelledby="{{u}}-q-esp">
-          <label class="chip-opt"><input type="radio" name="esp" value="Dermatologia"><span>Dermatologia</span></label>
-          <label class="chip-opt"><input type="radio" name="esp" value="Cirurgia plástica"><span>Cirurgia plástica</span></label>
-          <label class="chip-opt"><input type="radio" name="esp" value="Oftalmologia"><span>Oftalmologia</span></label>
-          <label class="chip-opt"><input type="radio" name="esp" value="Transplante capilar"><span>Transplante capilar</span></label>
-          <label class="chip-opt"><input type="radio" name="esp" value="Ortopedia"><span>Ortopedia</span></label>
-          <label class="chip-opt"><input type="radio" name="esp" value="Ginecologia"><span>Ginecologia</span></label>
-          <label class="chip-opt"><input type="radio" name="esp" value="Endocrinologia"><span>Endocrinologia</span></label>
-          <label class="chip-opt"><input type="radio" name="esp" value="Cardiologia"><span>Cardiologia</span></label>
-          <label class="chip-opt"><input type="radio" name="esp" value="Clínica médica geral"><span>Clínica médica geral</span></label>
-          <label class="chip-opt"><input type="radio" name="esp" value="Outra"><span>Outra</span></label>
+        <h2 class="dlg-title" tabindex="-1">Vamos começar pelo seu contato.</h2>
+        <p class="dlg-sub">É por aqui que a nossa equipe fala com você sobre o diagnóstico.</p>
+        <div class="note-box">
+          <small>Suas informações</small>
+          <p>Usamos seus dados para organizar o seu diagnóstico e entrar em contato pelo WhatsApp. <b>Não vendemos suas informações.</b> Para melhorar nossos anúncios, enviamos à Meta (Facebook e Instagram) a confirmação do seu cadastro, com seu nome e telefone criptografados.</p>
         </div>
-        <input class="inp inp-other" name="esp_outra" type="text" autocomplete="off" placeholder="Qual é a sua especialidade?" aria-label="Qual é a sua especialidade?" hidden>
+        <label class="q" for="{{u}}-nome">Nome completo <i>*</i></label>
+        <input class="inp" id="{{u}}-nome" name="nome" type="text" autocomplete="name" placeholder="Seu nome">
+        <label class="q" for="{{u}}-wa">WhatsApp <i>*</i></label>
+        <input class="inp" id="{{u}}-wa" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000">
+        <label class="q" for="{{u}}-clinica">Nome da clínica <i>*</i></label>
+        <input class="inp" id="{{u}}-clinica" name="clinica" type="text" autocomplete="organization" placeholder="Nome da sua clínica">
+      </section>
+
+      <section class="pane" data-step="2" hidden>
+        <h2 class="dlg-title" tabindex="-1">Conta um pouco sobre a sua clínica.</h2>
+        <p class="dlg-sub">Último passo. Isso ajuda a direcionar o diagnóstico.</p>
+        <span class="q" id="{{u}}-q-ads">Você já investe em anúncios? <i>*</i></span>
+        <div class="opts two" role="radiogroup" aria-labelledby="{{u}}-q-ads">
+          <label class="opt"><input type="radio" name="ads" value="Sim"><span class="dot"></span>Sim</label>
+          <label class="opt"><input type="radio" name="ads" value="Não"><span class="dot"></span>Não</label>
+        </div>
 
         <!-- MQL = faixas com data-mql="1" (R$ 50 mil ou mais). Elas vão para /obrigado/ (com pixel); as demais, para /recebido/ (sem pixel). -->
         <span class="q" id="{{u}}-q-fat">Faturamento mensal médio da clínica <i>*</i></span>
@@ -701,23 +693,6 @@ fbq('track', 'PageView');
           <label class="opt"><input type="radio" name="fat" value="R$ 80 mil a R$ 200 mil/mês" data-mql="1"><span class="dot"></span>R$ 80 mil a R$ 200 mil/mês</label>
           <label class="opt"><input type="radio" name="fat" value="Acima de R$ 200 mil/mês" data-mql="1"><span class="dot"></span>Acima de R$ 200 mil/mês</label>
         </div>
-      </section>
-
-      <section class="pane" data-step="2" hidden>
-        <h2 class="dlg-title" tabindex="-1">Como entramos em contato?</h2>
-        <p class="dlg-sub">Último passo. Nossa equipe entra em contato em breve.</p>
-        <div class="note-box">
-          <small>Suas informações</small>
-          <p>Usamos seus dados para organizar o seu diagnóstico e entrar em contato pelo WhatsApp. <b>Não vendemos suas informações.</b> Para melhorar nossos anúncios, enviamos à Meta (Facebook e Instagram) a confirmação do seu cadastro, com e-mail e telefone criptografados.</p>
-        </div>
-        <label class="q" for="{{u}}-nome">Nome completo <i>*</i></label>
-        <input class="inp" id="{{u}}-nome" name="nome" type="text" autocomplete="name" placeholder="Seu nome">
-        <label class="q" for="{{u}}-clinica">Nome da clínica <i>*</i></label>
-        <input class="inp" id="{{u}}-clinica" name="clinica" type="text" autocomplete="organization" placeholder="Nome da sua clínica">
-        <label class="q" for="{{u}}-email">E-mail <i>*</i></label>
-        <input class="inp" id="{{u}}-email" name="email" type="email" autocomplete="email" placeholder="seu@email.com">
-        <label class="q" for="{{u}}-wa">WhatsApp <i>*</i></label>
-        <input class="inp" id="{{u}}-wa" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000">
         <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
         <p class="form-status" role="status" aria-live="polite"></p>
       </section>
@@ -790,20 +765,16 @@ fbq('track', 'PageView');
       var statusEl = root.querySelector('.form-status');
       var success = root.querySelector('.success');
       var successWa = root.querySelector('.success-wa');
-      var other = form.elements.esp_outra;
       var phone = form.elements.whatsapp;
       var step = 1, sending = false;
 
       function valid(n) {
         if (n === 1) {
-          var esp = form.elements.esp.value;
-          var okEsp = !!esp && (esp !== 'Outra' || other.value.trim().length >= 3);
-          return okEsp && !!form.elements.fat.value;
+          return /\S+\s+\S+/.test(form.elements.nome.value.trim()) &&
+                 digits(phone.value).length >= 10 &&
+                 form.elements.clinica.value.trim().length >= 2;
         }
-        return /\S+\s+\S+/.test(form.elements.nome.value.trim()) &&
-               form.elements.clinica.value.trim().length >= 2 &&
-               /^\S+@\S+\.\S+$/.test(form.elements.email.value.trim()) &&
-               digits(phone.value).length >= 10;
+        return !!form.elements.ads.value && !!form.elements.fat.value;
       }
       function refreshNext() { btnNext.disabled = sending || !valid(step); }
 
@@ -837,10 +808,6 @@ fbq('track', 'PageView');
           [].forEach.call(form.querySelectorAll('input[name="' + t.name + '"]'), function (r) {
             r.parentNode.classList.toggle('on', r.checked);
           });
-          if (t.name === 'esp') {
-            other.hidden = t.value !== 'Outra';
-            if (t.value === 'Outra') other.focus({ preventScroll: true });
-          }
         }
         refreshNext();
       });
@@ -879,10 +846,10 @@ fbq('track', 'PageView');
         if (form.elements.website.value) return; /* honeypot */
 
         var params = new URLSearchParams(window.location.search);
-        var esp = form.elements.esp.value;
-        var especialidade = esp === 'Outra' ? other.value.trim() : esp;
+        var especialidade = 'Estética'; /* LP só para clínicas de estética */
         var nome = form.elements.nome.value.trim();
         var fatEl = form.querySelector('input[name="fat"]:checked');
+        var adsEl = form.querySelector('input[name="ads"]:checked');
         var mql = !!fatEl && fatEl.getAttribute('data-mql') === '1';
         var local = kind === 'inline' ? 'primeira seção' : (exitMode ? 'pop-up de saída' : 'pop-up (botão)');
         /* Código único deste envio. Vai para o servidor (que manda o Lead à Meta) e também para o pixel de
@@ -891,14 +858,14 @@ fbq('track', 'PageView');
         var testCode = params.get('test_event_code'); /* só para testar no Gerenciador de Eventos da Meta */
         var payload = {
           nome_completo: nome,
-          email: form.elements.email.value.trim(),
           whatsapp: phone.value.trim(),
           especialidade: especialidade,
           observacoes: [
             'Origem: LP Starnex Med',
             'Clínica: ' + form.elements.clinica.value.trim(),
             'Formulário: ' + local,
-            'Faturamento mensal médio: ' + form.elements.fat.value
+            'Já investe em anúncios: ' + adsEl.value,
+            'Faturamento mensal médio: ' + fatEl.value
           ].join('\n'),
           origem: 'LP Starnex Med',
           utm_source: params.get('utm_source'),
@@ -1236,13 +1203,14 @@ fbq('track', 'PageView');
                (ex.: 'assets/feedbacks/feedback-01' carrega feedback-01.webp ou .png)
        w, h    largura e altura reais da imagem em pixels (reserva o espaço, sem pulo de layout)
        alt     descrição do print para leitores de tela
-       visible false oculta o print (continua aqui, pronto para ativar)               */
+       visible false oculta o print (continua aqui, pronto para ativar).
+       Os 3 prints abaixo estão ocultos: nenhum identifica uma clínica de estética.  */
     var FEEDBACKS = [
-      { img: 'assets/feedbacks/feedback-01', w: 900, h: 775, visible: true,
+      { img: 'assets/feedbacks/feedback-01', w: 900, h: 775, visible: false,
         alt: 'Feedback de uma cliente no WhatsApp: "Passando para dar o feedback do último anúncio que vocês impulsionaram. Tive muita procura via DM do Instagram e agendamento de consultas."' },
-      { img: 'assets/feedbacks/feedback-02', w: 900, h: 979, visible: true,
+      { img: 'assets/feedbacks/feedback-02', w: 900, h: 979, visible: false,
         alt: 'Feedback de uma cliente no WhatsApp, de 0% a 100%: leads entendem o serviço, 40%; podem ir até a clínica, 100%; têm condições financeiras, 100%; conversão de leads em pacientes, 50%.' },
-      { img: 'assets/feedbacks/feedback-03', w: 900, h: 1423, visible: true,
+      { img: 'assets/feedbacks/feedback-03', w: 900, h: 1423, visible: false,
         alt: 'Feedback de um cliente no WhatsApp, de 0% a 100%: leads entendem o serviço, 95%; podem ir até a clínica, 90%; têm condições financeiras, 85%; conversão de leads em pacientes, 98%. Motivo de não agendar: alguns não são de procedimentos realizados na clínica.' }
     ];
 
@@ -1274,147 +1242,8 @@ fbq('track', 'PageView');
     var items = FEEDBACKS.filter(function (c) { return c.visible; });
     var n = items.length;
     var root = document.getElementById('feedbacks');
-    if (root) Carousel(root, items, makeCard, {});
-  })();
-
-  /* ---------- Resultados: cards ---------- */
-  (function () {
-    /* =================== CONFIGURAÇÃO DOS CARDS ===================
-       img     caminho da imagem SEM extensão. O código usa .webp e, de fallback, .png
-               (ex.: 'assets/cases/case-01' carrega case-01.webp ou case-01.png)
-       title   título do case
-       result  linha de resultado
-       alt     descrição da imagem para leitores de tela
-       visible false oculta o card (continua aqui, pronto para ativar)
-       art     números da ARTE que aparece quando não há imagem real (mantenha igual ao result).
-               kind 'funnel': value, unit, period  |  'invest': from, fromLabel, to, toLabel
-               kind 'growth': from, to, unit. Com a imagem real no lugar, a arte some sozinha. */
-    var CASES = [
-      { img: 'assets/cases/case-01', title: 'Prótese dentária',    result: '164 oportunidades em 30 dias',
-        alt: 'Relatório: 164 oportunidades de prótese dentária em 30 dias', visible: true,
-        art: { kind: 'funnel', value: '164', unit: 'oportunidades', period: 'em 30 dias' } },
-      { img: 'assets/cases/case-02', title: 'Implantes dentários', result: '152 oportunidades em 30 dias',
-        alt: 'Relatório: 152 oportunidades de implantes dentários em 30 dias', visible: true,
-        art: { kind: 'funnel', value: '152', unit: 'oportunidades', period: 'em 30 dias' } },
-      { img: 'assets/cases/case-03', title: 'Blefaroplastia',      result: '64 oportunidades em 30 dias',
-        alt: 'Relatório: 64 oportunidades de blefaroplastia em 30 dias', visible: true,
-        art: { kind: 'funnel', value: '64', unit: 'oportunidades', period: 'em 30 dias' } },
-      { img: 'assets/cases/case-04', title: 'Transplante capilar', result: '46 oportunidades em 30 dias',
-        alt: 'Relatório: 46 oportunidades de transplante capilar em 30 dias', visible: true,
-        art: { kind: 'funnel', value: '46', unit: 'oportunidades', period: 'em 30 dias' } },
-      /* PROVISÓRIOS: números ainda não confirmados. Troque visible para true quando tiver os reais. */
-      { img: 'assets/cases/case-05', title: 'Funil completo',      result: 'R$ 3 mil investidos, R$ 72 mil fechados',
-        alt: 'Relatório do funil completo: R$ 3 mil investidos e R$ 72 mil fechados', visible: false,
-        art: { kind: 'invest', from: 'R$ 3 mil', fromLabel: 'investidos', to: 'R$ 72 mil', toLabel: 'fechados' } },
-      { img: 'assets/cases/case-06', title: 'Clínica de estética', result: 'De 7 para 16 procedimentos por mês',
-        alt: 'Relatório: clínica de estética passou de 7 para 16 procedimentos por mês', visible: false,
-        art: { kind: 'growth', from: '7', to: '16', unit: 'procedimentos por mês' } }
-    ];
-    var IMG_W = 800, IMG_H = 1000;  /* proporção 4:5 (retrato); evita deslocamento de layout */
-    var items = CASES.filter(function (c) { return c.visible; });
-    var n = items.length;
-
-    /* ---------- Arte dos cards (SVG gerado a partir de `art`) ---------- */
-    var artUid = 0;
-    function esc(t) { return String(t).replace(/[&<>"]/g, function (ch) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]; }); }
-    function fit(t, maxW, base) { return Math.min(base, Math.floor(maxW / (String(t).length * 0.62))); }
-
-    /* trapézio com cantos arredondados (contorno da mesma cor) */
-    function tier(cx, y, h, wTop, wBot, fillId, glow) {
-      var r = 4, pts = [
-        [cx - wTop / 2 + r, y + r], [cx + wTop / 2 - r, y + r],
-        [cx + wBot / 2 - r, y + h - r], [cx - wBot / 2 + r, y + h - r]
-      ].map(function (p) { return p[0] + ',' + p[1]; }).join(' ');
-      return '<polygon points="' + pts + '" fill="url(#' + fillId + ')" stroke="url(#' + fillId + ')" stroke-width="' + (r * 2) + '" stroke-linejoin="round"' + (glow ? ' filter="url(#' + glow + ')"' : '') + '/>';
-    }
-
-    function artSvg(c) {
-      var a = c.art;
-      if (!a) return null;
-      var u = 'a' + (++artUid), P = '', label = c.title + ': ' + c.result;
-      var defs = '<defs>' +
-        '<radialGradient id="' + u + 'g" cx="50%" cy="0%" r="75%"><stop offset="0" stop-color="#7c3aed" stop-opacity=".42"/><stop offset="1" stop-color="#7c3aed" stop-opacity="0"/></radialGradient>' +
-        '<pattern id="' + u + 'p" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="1.2" cy="1.2" r="1" fill="#a78bfa" fill-opacity=".14"/></pattern>' +
-        '<linearGradient id="' + u + 'n" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#d4c5fa"/></linearGradient>' +
-        '<linearGradient id="' + u + 't1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2175"/><stop offset="1" stop-color="#2c1a5c"/></linearGradient>' +
-        '<linearGradient id="' + u + 't2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6232c4"/><stop offset="1" stop-color="#4c25a0"/></linearGradient>' +
-        '<linearGradient id="' + u + 't3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#7c3aed"/></linearGradient>' +
-        '<filter id="' + u + 'b" x="-40%" y="-60%" width="180%" height="220%"><feGaussianBlur stdDeviation="9"/></filter>' +
-        '</defs>';
-      var bg = '<rect width="320" height="400" fill="#150e27"/><rect width="320" height="400" fill="url(#' + u + 'g)"/><rect width="320" height="400" fill="url(#' + u + 'p)"/>';
-
-      if (a.kind === 'funnel') {
-        var fs = fit(a.value, 250, 88);
-        P += '<text class="d" x="160" y="98" text-anchor="middle" font-size="' + fs + '" fill="url(#' + u + 'n)" letter-spacing="-2">' + esc(a.value) + '</text>';
-        P += '<text x="160" y="129" text-anchor="middle" font-size="21" font-weight="700" fill="#c4b5fd">' + esc(a.unit) + '</text>';
-        P += '<text x="160" y="153" text-anchor="middle" font-size="15" font-weight="600" fill="#9d90c0">' + esc(a.period) + '</text>';
-        /* brilho atrás do último estágio */
-        P += '<ellipse cx="160" cy="336" rx="70" ry="26" fill="#8b5cf6" opacity=".55" filter="url(#' + u + 'b)"/>';
-        P += tier(160, 178, 52, 290, 238, u + 't1');
-        P += tier(160, 244, 52, 228, 176, u + 't2');
-        P += tier(160, 310, 52, 166, 126, u + 't3');
-        [[178, 'Anúncios', '#c9bdf0'], [244, 'Contatos', '#ece6ff'], [310, 'Oportunidades', '#ffffff']].forEach(function (t) {
-          P += '<text x="160" y="' + (t[0] + 32) + '" text-anchor="middle" font-size="' + (t[1].length > 10 ? 15 : 17) + '" font-weight="800" fill="' + t[2] + '">' + t[1] + '</text>';
-        });
-        [230, 296].forEach(function (y) { P += '<polygon points="153,' + (y + 3) + ' 167,' + (y + 3) + ' 160,' + (y + 11) + '" fill="#a78bfa" opacity=".85"/>'; });
-      } else if (a.kind === 'invest') {
-        var f1 = fit(a.from, 220, 44), f2 = fit(a.to, 244, 44);
-        P += '<rect x="44" y="46" width="232" height="118" rx="22" fill="#211736" stroke="#3a2d57" stroke-width="1.5"/>';
-        P += '<text class="d" x="160" y="108" text-anchor="middle" font-size="' + f1 + '" fill="#ffffff">' + esc(a.from) + '</text>';
-        P += '<text x="160" y="140" text-anchor="middle" font-size="18" font-weight="700" fill="#9d90c0">' + esc(a.fromLabel) + '</text>';
-        P += '<circle cx="160" cy="196" r="17" fill="#2c1a5c" stroke="#6d4fd0" stroke-width="1.5"/><polygon points="152,191 168,191 160,203" fill="#c4b5fd"/>';
-        P += '<ellipse cx="160" cy="318" rx="100" ry="30" fill="#8b5cf6" opacity=".5" filter="url(#' + u + 'b)"/>';
-        P += '<rect x="24" y="226" width="272" height="132" rx="24" fill="url(#' + u + 't3)"/>';
-        P += '<text class="d" x="160" y="291" text-anchor="middle" font-size="' + f2 + '" fill="#ffffff">' + esc(a.to) + '</text>';
-        P += '<text x="160" y="326" text-anchor="middle" font-size="19" font-weight="800" fill="#ede4ff">' + esc(a.toLabel) + '</text>';
-      } else if (a.kind === 'growth') {
-        var v1 = Number(a.from), v2 = Number(a.to), max = 180;
-        var h1 = v2 > 0 ? Math.max(24, Math.round(max * v1 / v2)) : 24, base = 318;
-        P += '<ellipse cx="208" cy="' + base + '" rx="70" ry="22" fill="#8b5cf6" opacity=".5" filter="url(#' + u + 'b)"/>';
-        P += '<rect x="64" y="' + (base - h1) + '" width="84" height="' + h1 + '" rx="14" fill="url(#' + u + 't1)" stroke="#4b3a7e" stroke-width="1.5"/>';
-        P += '<rect x="172" y="' + (base - max) + '" width="84" height="' + max + '" rx="14" fill="url(#' + u + 't3)"/>';
-        P += '<text class="d" x="106" y="' + (base - h1 - 14) + '" text-anchor="middle" font-size="44" fill="#d4c5fa">' + esc(a.from) + '</text>';
-        P += '<text class="d" x="214" y="' + (base - max - 14) + '" text-anchor="middle" font-size="52" fill="#ffffff">' + esc(a.to) + '</text>';
-        P += '<line x1="40" y1="' + (base + 4) + '" x2="280" y2="' + (base + 4) + '" stroke="#3a2d57" stroke-width="2" stroke-linecap="round"/>';
-        P += '<text x="160" y="360" text-anchor="middle" font-size="18" font-weight="700" fill="#c4b5fd">' + esc(a.unit) + '</text>';
-      } else { return null; }
-
-      var wrap = document.createElement('div');
-      wrap.className = 'art';
-      wrap.innerHTML = '<svg viewBox="0 0 320 400" role="img" aria-label="' + esc(label) + '" focusable="false">' + defs + bg + P + '</svg>';
-      return wrap;
-    }
-
-    function makeCard(c, i, clone) {
-      var fig = document.createElement('figure');
-      fig.className = 'case-d';
-      if (clone) { fig.setAttribute('data-clone', ''); fig.setAttribute('aria-hidden', 'true'); fig.inert = true; }
-      else { fig.setAttribute('role', 'group'); fig.setAttribute('aria-roledescription', 'slide'); fig.setAttribute('aria-label', (i + 1) + ' de ' + n); }
-
-      var frame = document.createElement('div'); frame.className = 'frame';
-      var art = artSvg(c); if (art) frame.appendChild(art);   /* arte atrás da imagem real */
-      var pic = document.createElement('picture');
-      var src = document.createElement('source'); src.type = 'image/webp'; src.srcset = c.img + '.webp';
-      var img = new Image();
-      img.width = IMG_W; img.height = IMG_H; img.alt = clone ? '' : c.alt;
-      img.decoding = 'async'; img.draggable = false;
-      img.loading = (i === 0 && !clone) ? 'eager' : 'lazy';   /* lazy a partir do 2º card */
-      img.addEventListener('error', function () {
-        if (src.parentNode) { src.remove(); img.src = c.img + '.png'; }  /* sem .webp: tenta o .png */
-        else frame.classList.add('is-missing');
-      });
-      img.addEventListener('load', function () { frame.classList.add('has-img'); });  /* imagem real cobre a arte */
-      img.src = c.img + '.png';
-      pic.appendChild(src); pic.appendChild(img); frame.appendChild(pic);
-
-      var h = document.createElement('h3'); h.textContent = c.title;
-      var p = document.createElement('p'); p.textContent = c.result;
-      fig.appendChild(frame); fig.appendChild(h); fig.appendChild(p);
-      return fig;
-    }
-
-    var root = document.getElementById('results');
-    if (root) Carousel(root, items, makeCard, {});
+    if (root && n) Carousel(root, items, makeCard, {});
+    else if (root) { var band = root.closest('section'); if (band) { band.hidden = true; band.style.display = 'none'; } }  /* nenhum print visível: esconde a faixa */
   })();
 </script>
 
